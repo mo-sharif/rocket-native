@@ -50,7 +50,7 @@ const Index = (
 
         <Stack
           key="recipes"
-          title="RECIPES"
+          title="POSTS"
           icon={() => <Icon name="book" {...DefaultProps.icons} />}
           {...DefaultProps.navbarProps}
         >

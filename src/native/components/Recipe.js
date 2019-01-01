@@ -62,7 +62,7 @@ const RecipeView = ({
         <Card>
           <CardItem header bordered>
             <Text>
-              About this recipe
+              About this post
             </Text>
           </CardItem>
           <CardItem>
@@ -77,7 +77,7 @@ const RecipeView = ({
         <Card>
           <CardItem header bordered>
             <Text>
-              Ingredients
+              Info
             </Text>
           </CardItem>
           <CardItem>

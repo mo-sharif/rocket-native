@@ -4,6 +4,7 @@
     "name": "Mosh React Native",
     "slug": "mosh-react-native",
     "icon": "src/images/app-icon.png",
+    "description": "This boilerplate launches with a React web app and React Native app sharing a single code base. It shares the 'business logic' (i.e. actions, containers, reducers) across the platforms, whilst allowing flexibility in View components to ensure your project looks and feels native in each platform.",
     "privacy": "public"
   }
 }
