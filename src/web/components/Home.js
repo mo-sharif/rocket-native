@@ -119,7 +119,7 @@ const About = () => (
     <hr />
     <Row className="pt-5">
       <Col xs="5" sm="3" lg="2" className="offset-lg-2">
-        <img className="img-fluid rounded-circle" src="https://avatars0.githubusercontent.com/u/1809236?s=460&v=4" alt="Matt Mcnamee" />
+        <img className="img-fluid rounded-circle" src="https://mosh-media.github.io/static/avatar-6c062274d0db2792dfb62e9cbad87411.jpg" alt="Matt Mcnamee" />
       </Col>
       <Col xs="12" sm="9" lg="5" className="pt-4 pt-sm-0">
         <h3>
@@ -129,7 +129,7 @@ const About = () => (
           This repo is a great place to start, but if you'd prefer to sit back and have your new
           project built for you,
           {' '}
-          <a target="_blank" rel="noopener noreferrer" href="https://mcnam.ee">
+          <a target="_blank" rel="noopener noreferrer" href="https://www.mosh-media.com/">
             get in touch with me directly
           </a>
           {' '}

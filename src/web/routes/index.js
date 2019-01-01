@@ -70,7 +70,7 @@ const Index = () => (
       )}
     />
     <Route
-      path="/recipes"
+      path="/posts"
       render={props => (
         <TemplateSidebar>
           <RecipesContainer {...props} Layout={RecipesComponent} />
@@ -78,7 +78,7 @@ const Index = () => (
       )}
     />
     <Route
-      path="/recipe/:id"
+      path="/post/:id"
       render={props => (
         <TemplateSidebar>
           <RecipesContainer {...props} Layout={RecipeViewComponent} />

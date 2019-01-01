@@ -19,7 +19,7 @@ const RecipeListing = ({ error, loading, recipes }) => {
   // Build Cards for Listing
   const cards = recipes.map(item => (
     <Card key={`${item.id}`}>
-      <Link to={`/recipe/${item.id}`}>
+      <Link to={`/post/${item.id}`}>
         <CardImg top src={item.image} alt={item.title} />
       </Link>
       <CardBody>
@@ -29,8 +29,8 @@ const RecipeListing = ({ error, loading, recipes }) => {
         <CardText>
           {item.body}
         </CardText>
-        <Link className="btn btn-primary" to={`/recipe/${item.id}`}>
-          View Recipe
+        <Link className="btn btn-primary" to={`/post/${item.id}`}>
+          View Post
           {' '}
           <i className="icon-arrow-right" />
         </Link>
@@ -44,7 +44,7 @@ const RecipeListing = ({ error, loading, recipes }) => {
       <Row>
         <Col sm="12">
           <h1>
-            Recipes
+            Posts
           </h1>
           <p>
             The following data is read directly from Firebase.

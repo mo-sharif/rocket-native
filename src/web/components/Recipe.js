@@ -100,7 +100,7 @@ const RecipeView = ({
       </Row>
       <Row className="pb-3">
         <Col sm="12">
-          <Link className="btn btn-secondary" to="/recipes">
+          <Link className="btn btn-secondary" to="/posts">
             <i className="icon-arrow-left" />
             {' '}
             Back

@@ -8,14 +8,20 @@ const Footer = () => (
         <p>
           Learn More on the
           {' '}
-          <a target="_blank" rel="noopener noreferrer" href="https://github.com/mcnamee/react-native-starter-kit">
+          <a target="_blank" rel="noopener noreferrer" href="https://github.com/Mosh-Media/react-native-firebase-starter">
             Github Repo
           </a>
           {' '}
-          &nbsp; | &nbsp; Written and Maintained by
+          &nbsp; | &nbsp; Boilerplate by
           {' '}
           <a target="_blank" rel="noopener noreferrer" href="https://mcnam.ee">
             Matt Mcnamee
+          </a>
+          {' '}
+          &nbsp; | &nbsp; Developed by
+          {' '}
+          <a target="_blank" rel="noopener noreferrer" href="https://github.com/Mosh-Media">
+            Mo Sharif
           </a>
           .
         </p>

@@ -1,8 +1,8 @@
 export default {
-  apiKey: 'AIzaSyAHshJehJ-E_9AoUN3kfY8BLvZtFoXxFto',
-  authDomain: 'react-native-starter-app.firebaseapp.com',
-  databaseURL: 'https://react-native-starter-app.firebaseio.com',
-  projectId: 'react-native-starter-app',
-  storageBucket: 'react-native-starter-app.appspot.com',
-  messagingSenderId: '762822550667',
+  apiKey: 'AIzaSyBfOKPgBYOHXfJ94MxXK-k041wflT7159U',
+  authDomain: 'react-native-starter-app-ab8f3.firebaseapp.com',
+  databaseURL: 'https://react-native-starter-app-ab8f3.firebaseio.com',
+  projectId: 'react-native-starter-app-ab8f3',
+  storageBucket: 'react-native-starter-app-ab8f3.appspot.com',
+  messagingSenderId: '700140108621',
 };
