@@ -9,37 +9,33 @@ const About = () => (
     <Content padder>
       <Spacer size={30} />
       <H1>
-        Heading 1
+       🚀  React Native Starter Kit
       </H1>
       <Spacer size={10} />
       <Text>
-        Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo,
-        tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem
-        malesuada magna mollis euismod. Donec sed odio dui.
+        This boilerplate launches with a React web app and React Native app sharing a single code base.
+        It shares the 'business logic' (i.e. actions, containers, reducers) across the platforms, whilst 
+        allowing flexibility in View components to ensure your project looks and feels native in each platform.
         {' '}
       </Text>
 
       <Spacer size={30} />
       <H2>
-        Heading 2
+       🔥  Firebase
       </H2>
       <Spacer size={10} />
       <Text>
-        Elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
-        mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-        magna mollis euismod. Donec sed odio dui.
+        Firebase is all ready to go with examples on how to read/write data to/from Firebase.
         {' '}
       </Text>
 
       <Spacer size={30} />
       <H3>
-        Heading 3
+        Redux
       </H3>
       <Spacer size={10} />
       <Text>
-        Elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
-        mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-        magna mollis euismod. Donec sed odio dui.
+       ⚛️  State management the 'clean way' via Redux is setup with examples - woohoo!
         {' '}
       </Text>
     </Content>
