@@ -1,9 +1,8 @@
 import React from 'react';
 import {
   Container, Content, Text, H1, H2, H3,
-} from 'native-base';
-import Spacer from './Spacer';
-import CameraBrain from './CameraBrain'
+} from 'native-base'
+import Spacer from './Spacer'
 
 const About = () => (
   <Container>
@@ -39,7 +38,6 @@ const About = () => (
         State management the 'clean way' via Redux is setup with examples - woohoo!
         {' '}
       </Text>
-      <CameraBrain />
     </Content>
   </Container>
 );
