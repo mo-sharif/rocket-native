@@ -7,7 +7,7 @@ const About = () => (
     <Content padder>
       <Spacer size={30} />
       <H1>
-       🚀 Native Rocket
+       🚀 Rocket Native
       </H1>
       <Spacer size={10} />
       <Text>

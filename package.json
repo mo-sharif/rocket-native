@@ -1,6 +1,6 @@
 {
-  "name": "Native Rocket",
-  "homepage": "https://github.com/Mosh-Media/native-rocketdsfd",
+  "name": "rocket-native",
+  "homepage": "https://github.com/Mosh-Media/rocket-native",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {

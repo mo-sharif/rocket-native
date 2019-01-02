@@ -2,17 +2,17 @@
   "expo": {
     "sdkVersion": "29.0.0",
     "version": "0.1.0",
-    "name": "Native Rocket",
-    "slug": "native-rocket",
+    "name": "Rocket Native",
+    "slug": "rocket-native",
     "icon": "src/images/app-icon.png",
     "description": "This boilerplate launches with a React web app and React Native app sharing a single code base. It shares the 'business logic' (i.e. actions, containers, reducers) across the platforms, whilst allowing flexibility in View components to ensure your project looks and feels native in each platform.",
     "privacy": "public",
     "orientation": "portrait",
     "ios": {
-			"bundleIdentifier": "com.moshmedia.nativerocket"
+			"bundleIdentifier": "com.moshmedia.rocketnative"
 		},
 		"android": {
-			"package": "com.moshmedia.nativerocket"
+			"package": "com.moshmedia.rocketnative"
 		}
   }
 }
