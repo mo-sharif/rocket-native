@@ -3,13 +3,14 @@ import {
   Container, Content, Text, H1, H2, H3,
 } from 'native-base';
 import Spacer from './Spacer';
+import CameraBrain from './CameraBrain'
 
 const About = () => (
   <Container>
     <Content padder>
       <Spacer size={30} />
       <H1>
-       🚀  React Native Starter Kit
+       🚀  React Native Kit
       </H1>
       <Spacer size={10} />
       <Text>
@@ -31,13 +32,14 @@ const About = () => (
 
       <Spacer size={30} />
       <H3>
-        Redux
+      ⚛️  Redux
       </H3>
       <Spacer size={10} />
       <Text>
-       ⚛️  State management the 'clean way' via Redux is setup with examples - woohoo!
+        State management the 'clean way' via Redux is setup with examples - woohoo!
         {' '}
       </Text>
+      <CameraBrain />
     </Content>
   </Container>
 );

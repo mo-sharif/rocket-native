@@ -37,7 +37,7 @@ const RecipeListing = ({
         />
 
         <FlatList
-          numColumns={2}
+          numColumns={1}
           data={recipes}
           renderItem={({ item }) => (
             <Card transparent style={{ paddingHorizontal: 6 }}>

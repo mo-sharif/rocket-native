@@ -112,7 +112,7 @@ const Index = (
       back
       clone
       key="recipe"
-      title="RECIPE"
+      title="POST"
       {...DefaultProps.navbarProps}
       component={RecipesContainer}
       Layout={RecipeViewComponent}
