@@ -22,4 +22,13 @@ export default {
   icons: {
     style: { color: 'white', height: 30, width: 30 },
   },
+  cameraIcon: {
+    style: { 
+    color: '#d6d7da',
+    fontSize: 20,
+    padding: 20,
+    borderRadius: "30%",
+    borderWidth: 1.5,
+    borderColor: '#d6d7da' },
+  },
 };

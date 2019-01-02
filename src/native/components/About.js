@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Container, Content, Text, H1, H2, H3,
-} from 'native-base'
+import { Container, Content, Text, H1 } from 'native-base'
 import Spacer from './Spacer'
 
 const About = () => (
@@ -9,7 +7,7 @@ const About = () => (
     <Content padder>
       <Spacer size={30} />
       <H1>
-       🚀  React Native Kit
+       🚀 Native Rocket
       </H1>
       <Spacer size={10} />
       <Text>
@@ -20,9 +18,9 @@ const About = () => (
       </Text>
 
       <Spacer size={30} />
-      <H2>
-       🔥  Firebase
-      </H2>
+      <H1>
+       🔥 Firebase
+      </H1>
       <Spacer size={10} />
       <Text>
         Firebase is all ready to go with examples on how to read/write data to/from Firebase.
@@ -30,12 +28,23 @@ const About = () => (
       </Text>
 
       <Spacer size={30} />
-      <H3>
-      ⚛️  Redux
-      </H3>
+      <H1>
+      ⚛️ Redux
+      </H1>
       <Spacer size={10} />
       <Text>
         State management the 'clean way' via Redux is setup with examples - woohoo!
+        {' '}
+      </Text>
+
+      <Spacer size={30} />
+      <H1>
+      🤖 Clarifai
+      </H1>
+      <Spacer size={10} />
+      <Text>
+      The Clarifai API offers image and video recognition as a service.Whether you have one image or billions,
+      you are only steps away from using artificial intelligence to recognize your visual content.
         {' '}
       </Text>
     </Content>

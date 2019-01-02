@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, View, TouchableOpacity, FlatList } from 'react-native'
 import { Camera, Permissions, ImageManipulator } from 'expo'
+import DefaultProps from '../constants/navigation';
 
 const Clarifai = require('clarifai')
 
@@ -88,14 +89,13 @@ export default class CameraBrain extends React.Component {
               </View>
               <TouchableOpacity
                 style={{
-                  flex: 0.1,
+                  flex: 0.2,
                   alignItems: 'center',
-                  backgroundColor: 'blue',
-                  height: '10%',
+                  height: '100%',
                 }}
                 onPress={this.objectDetection}
               >
-                <Text style={{ fontSize: 30, color: 'white', padding: 15 }}>
+                <Text {...DefaultProps.cameraIcon}>
                   {' '}
                   Detect Objects{' '}
                 </Text>
