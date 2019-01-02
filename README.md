@@ -1,21 +1,14 @@
-<img src="/docs/rnsk-logo.jpg" alt="React Native Starter Kit" width="400" />
+<img src="/docs/banner.jpg" alt="React Native Starter Kit" width="400" />
 
 [![GitHub tag](https://img.shields.io/github/tag/mcnamee/react-native-starter-kit.svg?style=flat-square)](https://github.com/mcnamee/react-native-starter-kit/tags)
 [![GitHub contributors](https://img.shields.io/github/contributors/mcnamee/react-native-starter-kit.svg?style=flat-square)](https://github.com/mcnamee/react-native-starter-kit/contributors)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/mcnamee/react-native-starter-kit/master/LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/mcnamee/react-native-starter-kit.svg?style=flat-square)](https://github.com/mcnamee/react-native-starter-kit/issues)
-[![GitHub closed issues](https://img.shields.io/github/issues-closed/mcnamee/react-native-starter-kit.svg?style=flat-square)](https://github.com/mcnamee/react-native-starter-kit/issues-closed)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/mcnamee/react-native-starter-kit.svg?style=flat-square)](https://github.com/mcnamee/react-native-starter-kit/issues-pr)
-
----
-
-[![CryptoTip](https://img.shields.io/badge/Donate%20with-CryptoTip-blue.svg?style=flat&colorB=007bff)](https://cryptotip.it/p/mcnamee)  [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=U7CE3LJYX859E)
 
 # React (Web + Native) Starter Kit
 
 #### For when you're looking to build 'the next big thing' for both web and native mobile.
 
-<a href="http://react-boilerplate.mcnam.ee/"><img src="/docs/web-demo.jpg" alt="Web Demo" height="50" /></a>
+<a href="https://react-native-starter-app-ab8f3.firebaseapp.com/"><img src="/docs/web-demo.jpg" alt="Web Demo" height="50" /></a>
 <a href="https://expo.io/@mcnamee/react-native-starter-kit"><img src="/docs/expo-demo.jpg" alt="React Native Expo Demo" height="50" /></a>
 
 ---

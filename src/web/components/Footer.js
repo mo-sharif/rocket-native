@@ -8,7 +8,7 @@ const Footer = () => (
         <p>
           Learn More on the
           {' '}
-          <a target="_blank" rel="noopener noreferrer" href="https://github.com/Mosh-Media/react-native-firebase-starter">
+          <a target="_blank" rel="noopener noreferrer" href="https://github.com/Mosh-Media/rocket-native">
             Github Repo
           </a>
           {' '}
