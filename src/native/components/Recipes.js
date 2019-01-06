@@ -40,13 +40,22 @@ const RecipeListing = ({
           numColumns={1}
           data={recipes}
           renderItem={({ item }) => (
-            <Card transparent style={{ paddingHorizontal: 6 }}>
+            <Card transparent 
+                  style={{ paddingHorizontal: 0, 
+                    borderRadius: 5,
+                    shadowColor: '#000000',
+                    shadowOffset: {
+                      width: 0,
+                      height: 3
+                    },
+                    shadowRadius: 4,
+                    shadowOpacity: 0.2 }}>
               <CardItem cardBody>
                 <TouchableOpacity onPress={() => onPress(item)} style={{ flex: 1 }}>
                   <Image
                     source={{ uri: item.image }}
                     style={{
-                      height: 100,
+                      height: 200,
                       width: null,
                       flex: 1,
                       borderRadius: 5,
@@ -56,15 +65,16 @@ const RecipeListing = ({
               </CardItem>
               <CardItem cardBody>
                 <Body>
-                  <Spacer size={10} />
-                  <Text style={{ fontWeight: '800' }}>
+                  <Spacer size={20} />
+                  <Text style={{ padding: 10, fontWeight: '400' }}>
                     {item.title}
                   </Text>
-                  <Spacer size={15} />
+                  <Spacer size={20} />
                   <Button
                     block
                     bordered
                     small
+                    style={{ margin: 10 }}
                     onPress={() => onPress(item)}
                   >
                     <Text>

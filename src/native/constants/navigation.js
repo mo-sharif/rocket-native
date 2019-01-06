@@ -15,19 +15,19 @@ export default {
   tabProps: {
     swipeEnabled: false,
     activeBackgroundColor: 'rgba(255,255,255,0.1)',
-    inactiveBackgroundColor: Colors.brandPrimary,
-    tabBarStyle: { backgroundColor: Colors.brandPrimary },
+    inactiveBackgroundColor: 'white',
+    tabBarStyle: { backgroundColor: 'white' },
   },
 
   icons: {
-    style: { color: 'white', height: 30, width: 30 },
+    style: { color: Colors.brandMedium, height: 30, width: 30 },
   },
   cameraIcon: {
     style: { 
     color: '#d6d7da',
     fontSize: 20,
     padding: 20,
-    borderRadius: "30%",
+    borderRadius: 30,
     borderWidth: 1.5,
     borderColor: '#d6d7da' },
   },

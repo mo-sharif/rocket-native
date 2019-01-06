@@ -1,7 +1,7 @@
 {
   "expo": {
-    "sdkVersion": "29.0.0",
-    "version": "0.1.0",
+    "sdkVersion": "31.0.0",
+    "version": "0.1.2",
     "name": "Rocket Native",
     "slug": "rocket-native",
     "icon": "src/images/app-icon.png",
@@ -9,7 +9,10 @@
     "privacy": "public",
     "orientation": "portrait",
     "ios": {
-			"bundleIdentifier": "com.moshmedia.rocketnative"
+      "bundleIdentifier": "com.moshmedia.rocketnative",
+      "infoPlist": {
+        "NSFaceIDUsageDescription": "This app will use Face ID or Touch ID to authorize."
+      }
 		},
 		"android": {
 			"package": "com.moshmedia.rocketnative"

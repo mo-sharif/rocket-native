@@ -26,7 +26,7 @@ export default class CameraBrain extends React.Component {
     }
   };
   resize = async photo => {
-    let manipulatedImage = await ImageManipulator.manipulate(
+    let manipulatedImage = await ImageManipulator.manipulateAsync(
       photo,
       [{ resize: { height: 300, width: 300 } }],
       { base64: true }

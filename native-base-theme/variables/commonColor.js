@@ -101,6 +101,7 @@ export default {
   brandDanger: "#d9534f",
   brandWarning: "#f0ad4e",
   brandDark: "#000",
+  brandMedium: "rgba(0, 0, 0 , 0.77)",
   brandLight: "#f4f4f4",
 
   // Font
