@@ -1,40 +1,96 @@
-import * as React from 'react';
-import { LocalAuthentication } from 'expo';
-import { login } from './Login';
-// You can import from local files
+import React from 'react';
+import { Button, Animated, Alert, StyleSheet, View, TouchableOpacity, TouchableHighlight, TextInput,Text } from 'react-native';
+import {Expo} from 'expo';
 import About from './About';
 
-export default class Lock extends React.Component {
-  comonentDidMount() {
-    console.log('LocalAuthentication.hasHardwareAsync()', LocalAuthentication.hasHardwareAsync());
-    // is the device touchId enabled
-    if (LocalAuthentication.hasHardwareAsync() && LocalAuthentication.isEnrolledAsync()) {
-   const userCredential = getLoginInformationInSecureStore();
-     // user has asked to use auth
-    LocalAuthentication.authenticateAsync();
-    console.log('userCredential', userCredential);
-    getAuthStatus();
-    props.navigation.navigate(NAVIGATION.home);
-  }
-}
-  render() {
-    return (
- /*      <View style={styles.container}>
-        <Card>
-          <Text>LocalAuthentication</Text>
-          <Text>hasHardwareAsync: {JSON.stringify(LocalAuthentication.hasHardwareAsync(), null, 4)}</Text>
-          <Text>isEnrolledAsync: {JSON.stringify(LocalAuthentication.isEnrolledAsync(), null, 4)}</Text>
-          <Text>authenticateAsync: {JSON.stringify(LocalAuthentication.authenticateAsync(), null, 4)}</Text>
 
-        </Card>
-        <Text style={styles.paragraph}>
-          Change code in the editor and watch it change on your phone! Save to get a shareable url.
-        </Text>
-        <Card title="Local Modules">
-          <About />
-        </Card>
-      </View> */
-      <About />
-    );
+export default class Lock extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {bioButton:false, authLock:false}
   }
+  componentWillMount(){
+		this._start()
+	}
+
+  _start = async () => {
+    let result = await this._checkBio();
+    if(result){
+      this.setState({bioButton:true})
+      this._handleScan()
+    }
+  }
+
+  _checkBio = async () => {
+		let result = await Expo.LocalAuthentication.hasHardwareAsync();
+    let result2 = await Expo.LocalAuthentication.isEnrolledAsync();
+    console.log("result => " + result)
+    console.log("result2 => " + result2)
+		if (result && result2) {
+		  return true;
+    }else{
+      return false;
+    }
+	};
+
+  _handleScan = () => {
+		if (Expo.Constants.platform.android) {
+			this._showAndroidAlert();
+		} else {
+			this._scanBiometrics();
+		}
+	};
+	
+	
+	_showAndroidAlert = () => {
+		Alert.alert('Fingerprint Scan', 
+    'Place your finger over the touch sensor.',
+    [{text: 'Use Pin', onPress: () => this._cancelAuthenticate()},]);
+		this._scanBiometrics();
+	};
+
+  _cancelAuthenticate = () => {
+    Expo.LocalAuthentication.cancelAuthenticate()
+  }
+
+	_scanBiometrics = async () => {
+		let result = await Expo.LocalAuthentication.authenticateAsync('Biometric Scan.');
+		if (result.success) {
+      this.setState = ({
+        authLock: true
+      })
+		  Alert.alert('authentication success');
+		} else {
+      if(!result.error.includes("cancel"))
+        this.setState = ({
+          authLock: false
+        })
+		    Alert.alert('authentication failed');
+		}
+	};
+
+	
+	render() {
+    const { authLock, bioButton} = this.state
+    const isAuth = authLock 
+    ?
+    <Text>True</Text>
+    :
+    <Text>Failed</Text>
+    
+
+		return (
+			<View>
+        { this.state.bioButton ? 
+          <View>
+            <Button 
+              title="sacn" 
+              onPress={() => this._handleScan()}>
+            </Button>
+          </View> : 
+            <Text>Scan Failed</Text>}
+          { this.state.authLock }
+			</View>
+		);
+	}
 }

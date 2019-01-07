@@ -1,9 +1,22 @@
 import React from 'react';
-import { Container, Content, Text, H1 } from 'native-base'
+import { Content, Text, H1 } from 'native-base'
 import Spacer from './Spacer'
+import Pusher from 'pusher-js/react-native';
+import { Alert } from 'react-native';
+
+Pusher.logToConsole = true;
+
+var pusher = new Pusher('21297c2b7b9a70373e47', {
+  cluster: 'us2',
+  forceTLS: true
+});
+
+var channel = pusher.subscribe('my-channel');
+channel.bind('my-event', function(data) {
+  Alert.alert(data.message);
+});
 
 const About = () => (
-  <Container>
     <Content padder>
       <Spacer size={30} />
       <H1>
@@ -48,7 +61,6 @@ const About = () => (
         {' '}
       </Text>
     </Content>
-  </Container>
 );
 
 export default About;

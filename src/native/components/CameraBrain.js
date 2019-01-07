@@ -2,6 +2,7 @@ import React from 'react'
 import { Text, View, TouchableOpacity, FlatList } from 'react-native'
 import { Camera, Permissions, ImageManipulator } from 'expo'
 import DefaultProps from '../constants/navigation';
+import { Constants, Haptic } from 'expo';
 
 const Clarifai = require('clarifai')
 
@@ -41,6 +42,7 @@ export default class CameraBrain extends React.Component {
     return predictions;
   };
   objectDetection = async () => {
+    await Haptic.impact(Haptic.ImpactFeedbackStyle.Hard)
     let photo = await this.capturePhoto();
     let resized = await this.resize(photo);
     let predictions = await this.predict(resized);

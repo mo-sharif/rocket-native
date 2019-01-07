@@ -27,8 +27,8 @@ import UpdateProfileComponent from '../components/UpdateProfile';
 import MemberContainer from '../../containers/Member';
 import ProfileComponent from '../components/Profile';
 
-import AboutComponent from '../components/About';
 import LockComponent from '../components/Lock';
+import AboutComponent from '../components/About';
 import CameraComponent from '../components/CameraComponent';
 
 const Index = (
@@ -47,7 +47,7 @@ const Index = (
           icon={() => <Icon name="planet" {...DefaultProps.icons} />}
           {...DefaultProps.navbarProps}
         >
-          <Scene key="home" component={LockComponent} />
+          <Scene key="home" component={AboutComponent} />
         </Stack>
 
         <Stack
