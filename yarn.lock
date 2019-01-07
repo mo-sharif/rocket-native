@@ -10738,6 +10738,11 @@ raf@^3.1.0:
   dependencies:
     performance-now "^2.1.0"
 
+random-animal-name-generator@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/random-animal-name-generator/-/random-animal-name-generator-0.1.0.tgz#05b837971a1ccc438639f9d4a9f43ba966bfe7ea"
+  integrity sha512-7uPg026gW0XNxw1qBED4eGtAOcnvv9T4fD59X9BlhlauHdt42CDss760jAOOvjvcAlPqT6j3d4gNHiMjJ3XSeg==
+
 randomatic@^3.0.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/randomatic/-/randomatic-3.1.1.tgz#b776efc59375984e36c537b2f51a1f0aff0da1ed"

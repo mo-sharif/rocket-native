@@ -29,7 +29,8 @@ import ProfileComponent from '../components/Profile';
 
 import LockComponent from '../components/Lock';
 import AboutComponent from '../components/About';
-import CameraComponent from '../components/CameraComponent';
+import CameraBrain from '../components/CameraBrain';
+import ShareScreen from '../components/PhotoShare/ShareScreen'
 
 const Index = (
   <Stack hideNavBar>
@@ -48,6 +49,7 @@ const Index = (
           {...DefaultProps.navbarProps}
         >
           <Scene key="home" component={AboutComponent} />
+          <Scene key="shareScreen" component={ShareScreen} />
         </Stack>
 
         <Stack
@@ -56,7 +58,7 @@ const Index = (
           icon={() => <Icon name="camera" {...DefaultProps.icons} />}
           {...DefaultProps.navbarProps}
         >
-          <Scene key="camera" component={CameraComponent} />
+          <Scene key="camera" component={CameraBrain} />
         </Stack>
 
         <Stack

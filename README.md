@@ -86,13 +86,6 @@ Via webpack, starts a localhost server on port 3001 [http://localhost:3001](http
 
 - Save code and it auto refreshes
 - Install [Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en) into Chrome to see the state of Redux
-
----
-
-## 👊 Further Help?
-
-This repo is a great place to start, but if you'd prefer to sit back and have your new project built for you, [get in touch with me directly](https://mcnam.ee) and I can organise a quote.
-
 ---
 
 ## 💡 Inspiration
