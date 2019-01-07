@@ -1,7 +1,7 @@
 import React from "react";
 import { Content, Text, H2 } from "native-base";
 import Spacer from "./Spacer";
-import PhotoApp from './PhotoShare/PhotoApp'
+import PhotoApp from "../../containers/PhotoShare/PhotoApp";
 const About = () => (
   <Content padder>
     <Spacer size={30} />

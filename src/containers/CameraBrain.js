@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View, TouchableOpacity, FlatList } from 'react-native'
 import { Camera, Permissions, ImageManipulator } from 'expo'
-import DefaultProps from '../constants/navigation';
+import DefaultProps from '../native/constants/navigation';
 import { Constants, Haptic } from 'expo';
 
 const Clarifai = require('clarifai')

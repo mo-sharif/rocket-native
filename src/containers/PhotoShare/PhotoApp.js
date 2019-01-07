@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Button, Content, Text, H1 } from "native-base";
-import Spacer from "../Spacer";
+import Spacer from "../../native/components/Spacer";
 import Pusher from "pusher-js/react-native";
 import { Actions } from "react-native-router-flux";
 

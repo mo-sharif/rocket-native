@@ -27,10 +27,10 @@ import UpdateProfileComponent from '../components/UpdateProfile';
 import MemberContainer from '../../containers/Member';
 import ProfileComponent from '../components/Profile';
 
-import LockComponent from '../components/Lock';
+import LockComponent from '../../containers/Lock';
 import AboutComponent from '../components/About';
-import CameraBrain from '../components/CameraBrain';
-import ShareScreen from '../components/PhotoShare/ShareScreen'
+import CameraBrain from '../../containers/CameraBrain';
+import ShareScreen from '../../containers/PhotoShare/ShareScreen'
 
 const Index = (
   <Stack hideNavBar>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Animated, Alert, StyleSheet, View, TouchableOpacity, TouchableHighlight, TextInput,Text } from 'react-native';
 import {Expo} from 'expo';
-import About from './About';
+import About from '../native/components/About';
 
 
 export default class Lock extends React.Component {
