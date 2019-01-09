@@ -7,7 +7,7 @@ import { Constants, Haptic } from 'expo';
 const Clarifai = require('clarifai')
 
 const clarifai = new Clarifai.App({
-  apiKey: '850b0f9eb2934969b471cbc235077ecc',
+  apiKey: 'YOUR_API_KEY',
 })
 process.nextTick = setImmediate;
 
