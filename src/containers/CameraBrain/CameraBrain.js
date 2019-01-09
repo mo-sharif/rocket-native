@@ -1,13 +1,15 @@
 import React from 'react'
 import { Text, View, TouchableOpacity, FlatList } from 'react-native'
 import { Camera, Permissions, ImageManipulator } from 'expo'
-import DefaultProps from '../constants/navigation';
+import DefaultProps from '../../native/constants/navigation';
 import { Constants, Haptic } from 'expo';
+import api from '../../constants/api'
 
+const { clarifai_key } = api
 const Clarifai = require('clarifai')
 
 const clarifai = new Clarifai.App({
-  apiKey: '850b0f9eb2934969b471cbc235077ecc',
+  apiKey: clarifai_key,
 })
 process.nextTick = setImmediate;
 

@@ -17,4 +17,5 @@ local.properties
 
 # Build
 build/bundle.js
+src/constants/api.js
 src/constants/firebase.js

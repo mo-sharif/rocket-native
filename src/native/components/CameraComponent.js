@@ -1,5 +1,5 @@
 import React from 'react';
-import CameraBrain from './CameraBrain'
+import CameraBrain from '../../containers/CameraBrain/CameraBrain'
 
 const CameraComponent = () => (
   <CameraBrain />
