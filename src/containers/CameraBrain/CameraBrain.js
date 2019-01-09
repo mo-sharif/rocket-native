@@ -44,11 +44,11 @@ export default class CameraBrain extends React.Component {
     return predictions;
   };
   objectDetection = async () => {
-    await Haptic.impact(Haptic.ImpactFeedbackStyle.Hard)
     let photo = await this.capturePhoto();
     let resized = await this.resize(photo);
     let predictions = await this.predict(resized);
     this.setState({ predictions: predictions.outputs[0].data.concepts });
+    await Haptic.impact(Haptic.ImpactFeedbackStyle.Hard)
   };
 
   render() {
