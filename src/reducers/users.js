@@ -4,7 +4,8 @@ export const initialState = Store;
 
 export default function userReducer(state = initialState, action) {
   switch (action.type) {
-    case 'GET_USERS': {
+    
+    case 'ALL_USERS': {
       let users = []
       if (action.data && typeof action.data === 'object') {
         users = action.data.map(user => ({
@@ -13,55 +14,32 @@ export default function userReducer(state = initialState, action) {
         }
         ));
       }
-      console.log('------>Reducer' + JSON.stringify(action.data))
       // Pick out the props I need
 
       return {
         ...state,
         error: null,
         loading: false,
-        users,
+        users: users || false
       };
     }
-    case 'MEALS_REPLACE': {
-      return {
-        ...state,
-        error: null,
-        loading: false,
-        meals: action.data,
-      };
-    }
+/*     case 'ALL_USERS': {
+      console.log('------>Reducer' + JSON.stringify(action.data))
+      if (action.data) {
+        return {
+          ...state,
+          loading: false,
+          error: null,
+          users: action.data,
+        };
+      }
+      return initialState;
+    } */
     case 'USERS_ERROR': {
       return {
         ...state,
         error: action.data,
       };
     }
-    case 'RECIPES_REPLACE': {
-      let users = [];
-
-      // Pick out the props I need
-      if (action.data && typeof action.data === 'object') {
-        users = action.data.map(item => ({
-          id: item.id,
-          title: item.title,
-          body: item.body,
-          category: item.category,
-          image: item.image,
-          author: item.author,
-          ingredients: item.ingredients,
-          method: item.method,
-        }));
-      }
-
-      return {
-        ...state,
-        error: null,
-        loading: false,
-        users,
-      };
-    }
-    default:
-      return state;
   }
 }

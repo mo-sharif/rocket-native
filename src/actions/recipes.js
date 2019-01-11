@@ -73,7 +73,7 @@ export function setError(message) {
 
 /**
   * Get Recipes
-  */
+ **/
 export function getRecipes() {
   if (Firebase === null) return () => new Promise(resolve => resolve());
 

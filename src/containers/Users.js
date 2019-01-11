@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { getUsers, setError } from '../actions/users';
 
 class UsersListing extends Component {
-  /* static propTypes = {
+  static propTypes = {
     Layout: PropTypes.func.isRequired,
     users: PropTypes.shape({
       loading: PropTypes.bool.isRequired,
@@ -17,7 +17,7 @@ class UsersListing extends Component {
     }),
     fetchUsers: PropTypes.func.isRequired,
     showError: PropTypes.func.isRequired,
-  } */
+  }
 
   static defaultProps = {
     match: null,
@@ -40,7 +40,6 @@ class UsersListing extends Component {
 
   render = () => {
     const { Layout, users, match } = this.props;
-    console.log('------>Container' + JSON.stringify(users))
     const id = (match && match.params && match.params.id) ? match.params.id : null;
     return (
       <Layout
