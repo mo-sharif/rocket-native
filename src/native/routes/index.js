@@ -9,6 +9,9 @@ import RecipesContainer from '../../containers/Recipes';
 import RecipesComponent from '../components/Recipes';
 import RecipeViewComponent from '../components/Recipe';
 
+import UsersContainer from '../../containers/Users'
+import UsersComponent from '../components/Users'
+
 import SignUpContainer from '../../containers/SignUp';
 import SignUpComponent from '../components/SignUp';
 
@@ -59,13 +62,22 @@ const Index = (
           <Scene key="camera" component={CameraComponent} />
         </Stack>
 
-        <Stack
+         <Stack
           key="recipes"
           title="POSTS"
           icon={() => <Icon name="book" {...DefaultProps.icons} />}
           {...DefaultProps.navbarProps}
         >
           <Scene key="recipes" component={RecipesContainer} Layout={RecipesComponent} />
+        </Stack> 
+
+        <Stack
+          key="users"
+          title="USERS"
+          icon={() => <Icon name="ios-person" {...DefaultProps.icons} />}
+          {...DefaultProps.navbarProps}
+        >
+          <Scene key="users" component={UsersContainer} Layout={UsersComponent} />
         </Stack>
 
         <Stack

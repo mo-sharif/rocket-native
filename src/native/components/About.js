@@ -3,7 +3,6 @@ import { Content, Text, H1 } from 'native-base'
 import Spacer from './Spacer'
 import Pusher from 'pusher-js/react-native';
 import { Alert } from 'react-native';
-
 Pusher.logToConsole = true;
 
 var pusher = new Pusher('21297c2b7b9a70373e47', {
