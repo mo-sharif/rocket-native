@@ -9,9 +9,11 @@ export default function userReducer(state = initialState, action) {
       if (action.data && typeof action.data === 'object') {
         users = action.data.map(user => ({
           firstName: user.firstName,
-          lastName: item.lastName
-        }));
+          lastName: user.lastName
+        }
+        ));
       }
+      console.log('------>Reducer' + JSON.stringify(action.data))
       // Pick out the props I need
 
       return {

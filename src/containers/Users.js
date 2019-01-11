@@ -40,6 +40,7 @@ class UsersListing extends Component {
 
   render = () => {
     const { Layout, users, match } = this.props;
+    console.log('------>Container' + JSON.stringify(users))
     const id = (match && match.params && match.params.id) ? match.params.id : null;
     return (
       <Layout

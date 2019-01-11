@@ -80,8 +80,8 @@ export function getUsers() {
 
   return dispatch => new Promise(resolve => FirebaseRef.child('users')
     .on('value', (snapshot) => {
-      const users = snapshot.val() || [];
-     
+      const users = Object.keys(snapshot.val())
+      .map(user => snapshot.val()[user]) || [];
       return resolve(dispatch({
         type: 'GET_USERS',
         data: users,
