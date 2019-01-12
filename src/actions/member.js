@@ -128,9 +128,7 @@ export function login(formData) {
           }
 
           await statusMessage(dispatch, 'loading', false);
-          setTimeout(resolve, 1000); // Resolve after 1s so that user sees a message
-
-          await statusMessage(dispatch, 'success', true);
+         // await statusMessage(dispatch, 'success', true);
 
           // Send Login data to Redux
           return resolve(dispatch({
