@@ -37,7 +37,7 @@ const Index = (
   <Stack hideNavBar>
     <Scene hideNavBar>
       <Tabs lazy={true} {...DefaultProps.tabProps}>
-        <Stack
+        <Stack  
           key="home"
           title={AppConfig.appName.toUpperCase()}
           icon={() => <Icon name="home" {...DefaultProps.icons} />}
