@@ -13,10 +13,14 @@ export default {
   },
 
   tabProps: {
-    swipeEnabled: false,
+    showLabel: false,
+    swipeEnabled: true,
+    activeTintColor: '#333333',
+    key: 'tabbar',
+    type: 'replace',
     activeBackgroundColor: 'rgba(255,255,255,0.1)',
     inactiveBackgroundColor: 'white',
-    tabBarStyle: { backgroundColor: 'white' },
+    tabStyle:{borderColor: "#FF0000"}
   },
 
   icons: {

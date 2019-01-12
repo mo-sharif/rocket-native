@@ -36,24 +36,14 @@ import AboutComponent from "../components/About";
 const Index = (
   <Stack hideNavBar>
     <Scene hideNavBar>
-      <Tabs
-        key="tabbar"
-        swipeEnabled
-        type="replace"
-        showLabel={false}
-        {...DefaultProps.tabProps}
-      >
+      <Tabs lazy={true} {...DefaultProps.tabProps}>
         <Stack
           key="home"
           title={AppConfig.appName.toUpperCase()}
           icon={() => <Icon name="home" {...DefaultProps.icons} />}
           {...DefaultProps.navbarProps}
         >
-{/*           <Scene
-            key="signUp"
-            component={SignUpContainer}
-            Layout={SignUpComponent}
-          /> */}
+
           <Scene key="home" component={AboutComponent} />
         </Stack>
 
