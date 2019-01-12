@@ -32,41 +32,41 @@ const img_url =
 const About = () => (
   <Container>
     <Content>
-    <List>
-    <View>
-    <Content padder>
-        <Header
-          title="UI Starter Kit"
-          content="Our kit provides with all tools you need to get started on your next mobile idea"
-        />
-        </Content>
-        <Image
-          source={{ uri: img_url }}
-          resizeMode="contain"
-          style={{
-            height: 250,
-            width: null,
-            flex: 2,
-            borderRadius: 5
-          }}
-        />
+      <List>
+        <View>
+          <Content padder>
+            <Header
+              title="UI Starter Kit"
+              content="Our kit provides with all tools you need to get started on your next mobile idea"
+            />
+          </Content>
+          <Image
+            source={{ uri: img_url }}
+            resizeMode="contain"
+            style={{
+              height: 250,
+              width: null,
+              flex: 2,
+              borderRadius: 5
+            }}
+          />
 
-        <ListItem onPress={Actions.signUp} selected>
-          <Left>
-            <Text>New Account</Text>
-          </Left>
-          <Right>
-            <Icon name="arrow-forward" />
-          </Right>
-        </ListItem>
-        <ListItem onPress={Actions.login}>
-          <Left>
-            <Text>Already Have an Account</Text>
-          </Left>
-          <Right>
-            <Icon name="arrow-forward" />
-          </Right>
-        </ListItem>
+          <ListItem onPress={Actions.signUp} selected>
+            <Left>
+              <Text>New Account</Text>
+            </Left>
+            <Right>
+              <Icon name="arrow-forward" />
+            </Right>
+          </ListItem>
+          <ListItem onPress={Actions.login}>
+            <Left>
+              <Text>Already Have an Account</Text>
+            </Left>
+            <Right>
+              <Icon name="arrow-forward" />
+            </Right>
+          </ListItem>
         </View>
       </List>
     </Content>

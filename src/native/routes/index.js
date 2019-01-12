@@ -37,14 +37,37 @@ const Index = (
   <Stack hideNavBar>
     <Scene hideNavBar>
       <Tabs lazy={true} {...DefaultProps.tabProps}>
-        <Stack  
+        <Stack
           key="home"
           title={AppConfig.appName.toUpperCase()}
           icon={() => <Icon name="home" {...DefaultProps.icons} />}
           {...DefaultProps.navbarProps}
         >
-
           <Scene key="home" component={AboutComponent} />
+          <Scene
+            back
+            key="signUp"
+            title="SIGN UP"
+            {...DefaultProps.navbarProps}
+            component={SignUpContainer}
+            Layout={SignUpComponent}
+          />
+          <Scene
+            back
+            key="login"
+            title="LOGIN"
+            {...DefaultProps.navbarProps}
+            component={LoginContainer}
+            Layout={LoginComponent}
+          />
+          <Scene
+            back
+            key="forgotPassword"
+            title="FORGOT PASSWORD"
+            {...DefaultProps.navbarProps}
+            component={ForgotPasswordContainer}
+            Layout={ForgotPasswordComponent}
+          />
         </Stack>
 
         <Stack
@@ -84,30 +107,7 @@ const Index = (
             component={MemberContainer}
             Layout={ProfileComponent}
           />
-          <Scene
-            back
-            key="signUp"
-            title="SIGN UP"
-            {...DefaultProps.navbarProps}
-            component={SignUpContainer}
-            Layout={SignUpComponent}
-          />
-          <Scene
-            back
-            key="login"
-            title="LOGIN"
-            {...DefaultProps.navbarProps}
-            component={LoginContainer}
-            Layout={LoginComponent}
-          />
-          <Scene
-            back
-            key="forgotPassword"
-            title="FORGOT PASSWORD"
-            {...DefaultProps.navbarProps}
-            component={ForgotPasswordContainer}
-            Layout={ForgotPasswordComponent}
-          />
+
           <Scene
             back
             key="locale"
