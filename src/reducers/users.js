@@ -4,7 +4,6 @@ export const initialState = Store;
 
 export default function userReducer(state = initialState, action) {
   switch (action.type) {
-    
     case 'ALL_USERS': {
       let users = []
       if (action.data && typeof action.data === 'object') {
@@ -20,26 +19,16 @@ export default function userReducer(state = initialState, action) {
         ...state,
         error: null,
         loading: false,
-        users: users || false
+        users: users
       };
     }
-/*     case 'ALL_USERS': {
-      console.log('------>Reducer' + JSON.stringify(action.data))
-      if (action.data) {
-        return {
-          ...state,
-          loading: false,
-          error: null,
-          users: action.data,
-        };
-      }
-      return initialState;
-    } */
     case 'USERS_ERROR': {
       return {
         ...state,
         error: action.data,
       };
     }
+    default:
+    return state;
   }
 }

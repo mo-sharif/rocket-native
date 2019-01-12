@@ -48,17 +48,6 @@ const About = () => (
         State management the 'clean way' via Redux is setup with examples - woohoo!
         {' '}
       </Text>
-
-      <Spacer size={30} />
-      <H1>
-      🤖 Clarifai
-      </H1>
-      <Spacer size={10} />
-      <Text>
-      The Clarifai API offers image and video recognition as a service.Whether you have one image or billions,
-      you are only steps away from using artificial intelligence to recognize your visual content.
-        {' '}
-      </Text>
     </Content>
 );
 

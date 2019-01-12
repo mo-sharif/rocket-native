@@ -2,7 +2,7 @@ import Store from '../store/member';
 
 export const initialState = Store;
 
-export default function userReducer(state = initialState, action) {
+export default function memberReducer(state = initialState, action) {
   switch (action.type) {
     case 'USER_LOGIN': {
       if (action.data) {

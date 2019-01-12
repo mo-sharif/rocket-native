@@ -80,6 +80,7 @@ export function getRecipes() {
   return dispatch => new Promise(resolve => FirebaseRef.child('recipes')
     .on('value', (snapshot) => {
       const recipes = snapshot.val() || [];
+      //console.log('------>Actions' + JSON.stringify(recipes[0]))
       return resolve(dispatch({
         type: 'RECIPES_REPLACE',
         data: recipes,

@@ -1,10 +1,10 @@
 export default {
-
-    users: [
-      {
-        firstName: '----------',
-        lastName:  '----------',
-      },
-    ],
-  };
-  
+  loading: true,
+  error: null,
+  users: [
+    {
+      firstName: "----------",
+      lastName: "----------"
+    }
+  ]
+};

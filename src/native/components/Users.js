@@ -68,7 +68,7 @@ const UserListingView = ({
                 <Body>
                   <Spacer size={20} />
                   <Text style={{ padding: 10, fontWeight: '400' }}>
-                    {item.firstName}
+                    {item.firstName + ' ' + item.lastName}
                   </Text>
                   <Spacer size={20} />
                   <Button

@@ -26,7 +26,6 @@ export default function recipeReducer(state = initialState, action) {
     }
     case 'RECIPES_REPLACE': {
       let recipes = [];
-
       // Pick out the props I need
       if (action.data && typeof action.data === 'object') {
         recipes = action.data.map(item => ({
