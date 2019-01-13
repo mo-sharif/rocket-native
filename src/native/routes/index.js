@@ -1,5 +1,5 @@
 import React from "react";
-import { Scene, Tabs, Stack } from "react-native-router-flux";
+import { Scene, Tabs, Stack, Animations } from "react-native-router-flux";
 import { Icon } from "native-base";
 
 import DefaultProps from "../constants/navigation";
@@ -35,8 +35,8 @@ import AboutComponent from "../components/About";
 
 const Index = (
   <Stack hideNavBar>
-    <Scene hideNavBar>
-      <Tabs lazy={true} {...DefaultProps.tabProps}>
+    <Scene modal="true" hideNavBar>
+      <Tabs lazy="true" {...DefaultProps.tabProps}>
         <Stack
           key="home"
           title={AppConfig.appName.toUpperCase()}
@@ -44,7 +44,7 @@ const Index = (
           {...DefaultProps.navbarProps}
         >
           <Scene key="home" component={MemberContainer} Layout={AboutComponent}/>
-          <Scene
+          <Scene 
             back
             key="signUp"
             title="SIGN UP"
