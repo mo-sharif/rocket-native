@@ -10,6 +10,8 @@ import {
   Icon,
   Container
 } from "native-base";
+import PropTypes from 'prop-types';
+
 import Spacer from "./Spacer";
 import Pusher from "pusher-js/react-native";
 import { Actions } from "react-native-router-flux";
@@ -29,7 +31,8 @@ channel.bind("my-event", function(data) {
 });
 const img_url =
   "https://raw.githubusercontent.com/Mosh-Media/rocket-native/master/src/images/app-rocket.png";
-const About = () => (
+  console.log('=====> ' + this.props)
+const About = ({ member }) => (
   <Container>
     <Content>
       <List>
@@ -40,6 +43,7 @@ const About = () => (
               content="Our kit provides with all tools you need to get started on your next mobile idea"
             />
           </Content>
+
           <Image
             source={{ uri: img_url }}
             resizeMode="contain"
@@ -50,27 +54,49 @@ const About = () => (
               borderRadius: 5
             }}
           />
-
-          <ListItem onPress={Actions.signUp} selected>
-            <Left>
-              <Text>New Account</Text>
-            </Left>
-            <Right>
-              <Icon name="arrow-forward" />
-            </Right>
-          </ListItem>
-          <ListItem onPress={Actions.login}>
-            <Left>
-              <Text>Already Have an Account</Text>
-            </Left>
-            <Right>
-              <Icon name="arrow-forward" />
-            </Right>
-          </ListItem>
+          {member && member.email ? (
+            <View>
+              <ListItem selected>
+                <Left>
+                  <Text>{`Welcome back ${member.firstName}!`}</Text>
+                </Left>
+                <Right>
+                  <Icon name="checkmark" />
+                </Right>
+              </ListItem>
+            </View>
+          ) : (
+            <View>
+              <ListItem onPress={Actions.signUp} selected>
+                <Left>
+                  <Text>New Account</Text>
+                </Left>
+                <Right>
+                  <Icon name="arrow-forward" />
+                </Right>
+              </ListItem>
+              <ListItem onPress={Actions.login}>
+                <Left>
+                  <Text>Already Have an Account</Text>
+                </Left>
+                <Right>
+                  <Icon name="arrow-forward" />
+                </Right>
+              </ListItem>
+            </View>
+          )}
         </View>
       </List>
     </Content>
   </Container>
 );
+
+About.propTypes = {
+  member: PropTypes.shape({}),
+};
+
+About.defaultProps = {
+  member: {},
+};
 
 export default About;

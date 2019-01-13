@@ -16,7 +16,7 @@ const Profile = ({ member, logout }) => (
             <View>
               <Content padder>
                 <Header
-                  title={`Hi ${member.firstName},`}
+                  title={`Welcome back ${member.firstName}!`}
                   content={`You are currently logged in as ${member.email}`}
                 />
               </Content>
@@ -47,7 +47,7 @@ const Profile = ({ member, logout }) => (
             <View>
               <Content padder>
                 <Header
-                  title="Hi there,"
+                  title="Hi there!"
                   content="Please login to gain extra access"
                 />
               </Content>
