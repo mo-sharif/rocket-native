@@ -82,6 +82,7 @@ class Login extends React.Component {
                 {translate('Email', locale)}
               </Label>
               <Input
+                autoFocus={true}
                 autoCapitalize="none"
                 value={email}
                 keyboardType="email-address"
