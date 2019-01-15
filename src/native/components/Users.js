@@ -32,6 +32,7 @@ const UserListingView = ({
   const onPress = item => Actions.users({ match: { params: { id: String(item.id) } } });
   const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
+
   return (
     <Container>
       <Content padder>
@@ -48,7 +49,7 @@ const UserListingView = ({
                 <Text> {data.firstName} </Text>
               </ListItem>}
             renderLeftHiddenRow={data =>
-              <Button full onPress={() => alert(data)}>
+              <Button full onPress={() => alert(`Name: ${data.firstName} ${data.lastName}`)}>
                 <Icon active name="information-circle" />
               </Button>}
             renderRightHiddenRow={(data, secId, rowId, rowMap) =>
