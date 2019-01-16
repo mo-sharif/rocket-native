@@ -41,12 +41,11 @@ class RecipeListing extends Component {
   render = () => {
     const { Layout, posts, match } = this.props;
     const id = (match && match.params && match.params.id) ? match.params.id : null;
-    console.log('✅ Container' + JSON.stringify(posts))
     return (
       <Layout
         error={posts.error}
         loading={posts.loading}
-        posts={posts}
+        posts={posts.posts}
         reFetch={() => this.fetchPosts()}
       />
     );

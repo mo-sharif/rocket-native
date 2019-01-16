@@ -32,7 +32,6 @@ const RecipeListing = ({ error, loading, posts, reFetch }) => {
   if (error) return <Error content={error} />;
 
   const keyExtractor = item => item.id;
-console.log('Component ✅' +JSON.stringify(posts))
   const onPress = item =>
     Actions.posts({ match: { params: { id: String(item.id) } } });
 
@@ -41,9 +40,9 @@ console.log('Component ✅' +JSON.stringify(posts))
       <Content padder>
         <Header
           title="Top Posts"
-          content="This is here to show how you can read and display data from a data source (in our case, Firebase)."
+          content="Showing all posts in our database"
         />
-        <ListItem onPress={Actions.addPost} icon>
+        <ListItem onPress={Actions.newPost} icon>
           <Left>
             <Icon name="add-circle" />
           </Left>

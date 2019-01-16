@@ -40,10 +40,23 @@ export function getPosts() {
       .on('value', (snapshot) => {
         //const posts = snapshot.val() || [];
        const posts =Object.keys(snapshot.val()).map(user => snapshot.val()[user]) || [];
-        console.log('✅ Actions' + posts)
         return resolve(dispatch({
           type: 'GET_ALL_POSTS',
           data: posts,
         }));
       })).catch(e => console.log(e));
   }
+  /**
+ * Set an Error Message
+ */
+export function setError(message) {
+  return dispatch =>
+    new Promise(resolve =>
+      resolve(
+        dispatch({
+          type: "POSTS_ERROR",
+          data: message
+        })
+      )
+    );
+}
