@@ -1,7 +1,7 @@
 {
   "expo": {
     "sdkVersion": "31.0.0",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "name": "Rocket Native",
     "slug": "rocket-native",
     "icon": "src/images/app-icon.png",
