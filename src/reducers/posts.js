@@ -1,8 +1,8 @@
-import Store from '../store/post';
+import Store from '../store/posts';
 
 export const initialState = Store;
 
-export default function memberReducer(state = initialState, action) {
+export default function postsReducer(state = initialState, action) {
   switch (action.type) {
     case 'NEW_POST': {
       if (action.data) {
