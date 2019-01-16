@@ -58,8 +58,7 @@ class Login extends React.Component {
     const { onFormSubmit } = this.props;
     onFormSubmit(this.state)
       .then(() => {
-        Actions.pop();
-        Actions.home;
+        Actions.home();
       })
       .catch(e => console.log(`Error: ${e}`));
   };

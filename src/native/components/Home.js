@@ -32,7 +32,7 @@ channel.bind("my-event", function(data) {
 const img_url =
   "https://raw.githubusercontent.com/Mosh-Media/rocket-native/master/src/images/app-rocket.png";
 
-const About = ({ member }) => (
+const Home = ({ member }) => (
   <Container>
     <Content>
       <List>
@@ -99,12 +99,12 @@ const About = ({ member }) => (
   </Container>
 );
 
-About.propTypes = {
+Home.propTypes = {
   member: PropTypes.shape({})
 };
 
-About.defaultProps = {
+Home.defaultProps = {
   member: {}
 };
 
-export default About;
+export default Home;

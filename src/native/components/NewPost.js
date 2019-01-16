@@ -47,7 +47,7 @@ class AddPost extends React.Component {
     const { onFormSubmit } = this.props;
     onFormSubmit(this.state)
       .then(() => {
-        Actions.posts;
+        Actions.posts();
       })
       .catch(e => console.log(`Error: ${e}`));
   };

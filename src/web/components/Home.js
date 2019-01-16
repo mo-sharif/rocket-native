@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Jumbotron } from 'reactstrap';
 
-const About = () => (
+const Home = () => (
   <div>
     <Row>
       <Jumbotron className="bg-primary text-white">
@@ -140,4 +140,4 @@ const About = () => (
   </div>
 );
 
-export default About;
+export default Home;

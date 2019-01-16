@@ -34,14 +34,14 @@ import UpdateProfileComponent from "../components/UpdateProfile";
 import MemberContainer from "../../containers/Member";
 import ProfileComponent from "../components/Profile";
 
-import AboutComponent from "../components/About";
+import HomeComponent from "../components/Home";
 
 const Index = (
   <Stack hideNavBar>
     <Scene modal="true" hideNavBar>
       <Tabs lazy="true" {...DefaultProps.tabProps}>
         <Stack
-          key="home"
+          key="homeStack"
           title={AppConfig.appName.toUpperCase()}
           icon={() => <Icon name="home" {...DefaultProps.icons} />}
           {...DefaultProps.navbarProps}
@@ -49,7 +49,7 @@ const Index = (
           <Scene
             key="home"
             component={MemberContainer}
-            Layout={AboutComponent}
+            Layout={HomeComponent}
           />
           <Scene
             back
@@ -78,7 +78,7 @@ const Index = (
         </Stack>
 
         <Stack
-          key="posts"
+          key="postStack"
           title="POSTS"
           icon={() => <Icon name="book" {...DefaultProps.icons} />}
           {...DefaultProps.navbarProps}
@@ -99,7 +99,7 @@ const Index = (
         </Stack>
 
         <Stack
-          key="users"
+          key="userStack"
           title="USERS"
           icon={() => <Icon name="ios-person" {...DefaultProps.icons} />}
           {...DefaultProps.navbarProps}

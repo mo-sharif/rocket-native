@@ -16,7 +16,11 @@ class PostListing extends Component {
       params: PropTypes.shape({})
     }),
     fetchPosts: PropTypes.func.isRequired,
-    showError: PropTypes.func.isRequired
+    showError: PropTypes.func.isRequired,
+    member: PropTypes.shape({
+      loading: PropTypes.bool.isRequired,
+      error: PropTypes.string
+    }).isRequired
   };
 
   static defaultProps = {
@@ -39,11 +43,12 @@ class PostListing extends Component {
   };
 
   render = () => {
-    const { Layout, posts, match } = this.props;
+    const { Layout, posts, match, member } = this.props;
     const id =
       match && match.params && match.params.id ? match.params.id : null;
     return (
       <Layout
+        member={member}
         postId={id}
         error={posts.error}
         loading={posts.loading}
@@ -55,7 +60,8 @@ class PostListing extends Component {
 }
 
 const mapStateToProps = state => ({
-  posts: state.posts || {}
+  posts: state.posts || {},
+  member: state.member || {}
 });
 
 const mapDispatchToProps = {

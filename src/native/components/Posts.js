@@ -24,7 +24,7 @@ import Error from "./Error";
 import Header from "./Header";
 import Spacer from "./Spacer";
 
-const PostListing = ({ error, loading, posts, reFetch }) => {
+const PostListing = ({ error, loading, posts, reFetch, member }) => {
   // Loading
   if (loading) return <Loading />;
 
@@ -39,14 +39,25 @@ const PostListing = ({ error, loading, posts, reFetch }) => {
     <Container>
       <Content padder>
         <Header title="News" content="Showing all posts in our database" />
-        <ListItem onPress={Actions.newPost} icon>
-          <Left>
-            <Icon name="add-circle" />
-          </Left>
-          <Body>
-            <Text>New Post</Text>
-          </Body>
-        </ListItem>
+        {member && member.email ? (
+          <ListItem onPress={Actions.newPost} icon>
+            <Left>
+              <Icon name="add-circle" />
+            </Left>
+            <Body>
+              <Text>New Post</Text>
+            </Body>
+          </ListItem>
+        ) : (
+          <ListItem onPress={Actions.login} icon>
+            <Left>
+              <Icon name="add-circle" />
+            </Left>
+            <Body>
+              <Text>Login to post</Text>
+            </Body>
+          </ListItem>
+        )}
         <FlatList
           numColumns={1}
           data={posts}
