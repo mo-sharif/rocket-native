@@ -2,21 +2,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getRecipes, getMeals, setError } from '../actions/recipes';
+import { getPosts, setError } from '../actions/posts';
 
 class RecipeListing extends Component {
   static propTypes = {
     Layout: PropTypes.func.isRequired,
-    recipes: PropTypes.shape({
+    posts: PropTypes.shape({
       loading: PropTypes.bool.isRequired,
       error: PropTypes.string,
-      recipes: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+      posts: PropTypes.arrayOf(PropTypes.shape()).isRequired,
     }).isRequired,
     match: PropTypes.shape({
       params: PropTypes.shape({}),
     }),
-    fetchRecipes: PropTypes.func.isRequired,
-    fetchMeals: PropTypes.func.isRequired,
+    fetchPosts: PropTypes.func.isRequired,
     showError: PropTypes.func.isRequired,
   }
 
@@ -24,15 +23,15 @@ class RecipeListing extends Component {
     match: null,
   }
 
-  componentDidMount = () => this.fetchRecipes();
+  componentDidMount = () => this.fetchPosts();
 
   /**
     * Fetch Data from API, saving to Redux
     */
-  fetchRecipes = () => {
-    const { fetchRecipes, fetchMeals, showError } = this.props;
-    return fetchRecipes()
-      .then(() => fetchMeals())
+  fetchPosts = () => {
+    const { fetchPosts, showError } = this.props;
+    return fetchPosts()
+      .then(() => console.log('Success'))
       .catch((err) => {
         console.log(`Error: ${err}`);
         return showError(err);
@@ -40,28 +39,26 @@ class RecipeListing extends Component {
   }
 
   render = () => {
-    const { Layout, recipes, match } = this.props;
+    const { Layout, posts, match } = this.props;
     const id = (match && match.params && match.params.id) ? match.params.id : null;
-
+    console.log('✅ Container' + JSON.stringify(posts))
     return (
       <Layout
-        recipeId={id}
-        error={recipes.error}
-        loading={recipes.loading}
-        recipes={recipes.recipes}
-        reFetch={() => this.fetchRecipes()}
+        error={posts.error}
+        loading={posts.loading}
+        posts={posts}
+        reFetch={() => this.fetchPosts()}
       />
     );
   }
 }
 
 const mapStateToProps = state => ({
-  recipes: state.recipes || {},
+  posts: state.posts || {},
 });
 
 const mapDispatchToProps = {
-  fetchRecipes: getRecipes,
-  fetchMeals: getMeals,
+  fetchPosts: getPosts,
   showError: setError,
 };
 

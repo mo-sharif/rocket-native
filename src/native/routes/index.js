@@ -1,6 +1,7 @@
 import React from "react";
-import { Scene, Tabs, Stack, Animations } from "react-native-router-flux";
+import { Scene, Tabs, Stack } from "react-native-router-flux";
 import { Icon } from "native-base";
+import { Actions } from "react-native-router-flux";
 
 import DefaultProps from "../constants/navigation";
 import AppConfig from "../../constants/config";
@@ -14,6 +15,9 @@ import UsersComponent from "../components/Users";
 
 import SignUpContainer from "../../containers/SignUp";
 import SignUpComponent from "../components/SignUp";
+
+import NewPostContainer from "../../containers/NewPost";
+import NewPostComponent from "../components/NewPost";
 
 import LoginContainer from "../../containers/Login";
 import LoginComponent from "../components/Login";
@@ -30,7 +34,6 @@ import UpdateProfileComponent from "../components/UpdateProfile";
 import MemberContainer from "../../containers/Member";
 import ProfileComponent from "../components/Profile";
 
-import LockComponent from "../components/Lock";
 import AboutComponent from "../components/About";
 
 const Index = (
@@ -43,8 +46,12 @@ const Index = (
           icon={() => <Icon name="home" {...DefaultProps.icons} />}
           {...DefaultProps.navbarProps}
         >
-          <Scene key="home" component={MemberContainer} Layout={AboutComponent}/>
-          <Scene 
+          <Scene
+            key="home"
+            component={MemberContainer}
+            Layout={AboutComponent}
+          />
+          <Scene
             back
             key="signUp"
             title="SIGN UP"
@@ -80,6 +87,14 @@ const Index = (
             key="recipes"
             component={RecipesContainer}
             Layout={RecipesComponent}
+          />
+          <Scene
+            key="newPost"
+            title="NEW POST"
+            rightTitle=""
+            component={NewPostContainer}
+            Layout={NewPostComponent}
+            {...DefaultProps.navbarProps}
           />
         </Stack>
 

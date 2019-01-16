@@ -10,7 +10,7 @@ import {
   Icon,
   Container
 } from "native-base";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 import Spacer from "./Spacer";
 import Pusher from "pusher-js/react-native";
@@ -31,7 +31,7 @@ channel.bind("my-event", function(data) {
 });
 const img_url =
   "https://raw.githubusercontent.com/Mosh-Media/rocket-native/master/src/images/app-rocket.png";
-  console.log('=====> ' + this.props)
+
 const About = ({ member }) => (
   <Container>
     <Content>
@@ -64,6 +64,14 @@ const About = ({ member }) => (
                   <Icon name="checkmark" />
                 </Right>
               </ListItem>
+              <ListItem onPress={Actions.newPost}>
+                <Left>
+                  <Text>New Post</Text>
+                </Left>
+                <Right>
+                  <Icon name="add" />
+                </Right>
+              </ListItem>
             </View>
           ) : (
             <View>
@@ -92,11 +100,11 @@ const About = ({ member }) => (
 );
 
 About.propTypes = {
-  member: PropTypes.shape({}),
+  member: PropTypes.shape({})
 };
 
 About.defaultProps = {
-  member: {},
+  member: {}
 };
 
 export default About;

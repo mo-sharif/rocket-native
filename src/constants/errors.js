@@ -13,6 +13,8 @@ export default {
   missingLastName: 'Last name is missing',
   missingEmail: 'Email is missing',
   missingPassword: 'Password is missing',
+  missingPostTitle: 'Post title is missing',
+  missingPostBody: 'Post body is missing',
   passwordsDontMatch: 'Passwords do not match',
 
   // Recipes

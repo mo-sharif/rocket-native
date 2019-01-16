@@ -47,6 +47,7 @@ export default function recipeReducer(state = initialState, action) {
         recipes,
       };
     }
+
     default:
       return state;
   }
