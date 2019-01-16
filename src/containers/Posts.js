@@ -44,6 +44,7 @@ class PostListing extends Component {
       match && match.params && match.params.id ? match.params.id : null;
     return (
       <Layout
+        postId={id}
         error={posts.error}
         loading={posts.loading}
         posts={posts.posts}

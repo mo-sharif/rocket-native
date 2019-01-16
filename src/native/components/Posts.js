@@ -38,7 +38,7 @@ const PostListing = ({ error, loading, posts, reFetch }) => {
   return (
     <Container>
       <Content padder>
-        <Header title="Top Posts" content="Showing all posts in our database" />
+        <Header title="News" content="Showing all posts in our database" />
         <ListItem onPress={Actions.newPost} icon>
           <Left>
             <Icon name="add-circle" />

@@ -25,7 +25,7 @@ class Locale extends React.Component {
   handleChange = (locale) => {
     const { onChangeLocale } = this.props;
     onChangeLocale(locale)
-      .then(() => Actions.pop)
+      .then(() => Actions.pop())
       .catch(e => console.log(`Error: ${e}`));
   }
 
