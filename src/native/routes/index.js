@@ -6,9 +6,9 @@ import { Actions } from "react-native-router-flux";
 import DefaultProps from "../constants/navigation";
 import AppConfig from "../../constants/config";
 
-import RecipesContainer from "../../containers/Recipes";
-import RecipesComponent from "../components/Recipes";
-import RecipeViewComponent from "../components/Recipe";
+import PostsContainer from "../../containers/Posts";
+import PostsComponent from "../components/Posts";
+import PostViewComponent from "../components/SinglePost";
 
 import UsersContainer from "../../containers/Users";
 import UsersComponent from "../components/Users";
@@ -78,15 +78,15 @@ const Index = (
         </Stack>
 
         <Stack
-          key="recipes"
+          key="posts"
           title="POSTS"
           icon={() => <Icon name="book" {...DefaultProps.icons} />}
           {...DefaultProps.navbarProps}
         >
           <Scene
-            key="recipes"
-            component={RecipesContainer}
-            Layout={RecipesComponent}
+            key="posts"
+            component={PostsContainer}
+            Layout={PostsComponent}
           />
           <Scene
             key="newPost"
@@ -146,11 +146,11 @@ const Index = (
     <Scene
       back
       clone
-      key="recipe"
+      key="post"
       title="POST"
       {...DefaultProps.navbarProps}
-      component={RecipesContainer}
-      Layout={RecipeViewComponent}
+      component={PostsContainer}
+      Layout={PostViewComponent}
     />
   </Stack>
 );

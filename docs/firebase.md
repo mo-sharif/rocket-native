@@ -19,7 +19,7 @@ We've created a quick little "API server" on [Google's Firebase Platform](https:
       ".read": true
     },
 
-    "recipes": {
+    "Posts": {
       ".read": true,
     	".indexOn": ["category"]
     },

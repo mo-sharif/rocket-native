@@ -1,6 +1,5 @@
 import status from './status';
 import member from './member';
-import recipes from './recipes';
 import users from './users';
 import locale from './locale';
 import posts from './posts';
@@ -18,7 +17,6 @@ export default {
   rehydrated,
   status,
   member,
-  recipes,
   users,
   locale,
   posts

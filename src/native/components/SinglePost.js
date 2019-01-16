@@ -8,25 +8,25 @@ import ErrorMessages from '../../constants/errors';
 import Error from './Error';
 import Spacer from './Spacer';
 
-const RecipeView = ({
+const PostView = ({
   error,
-  recipes,
-  recipeId,
+  posts,
+  postId,
 }) => {
   // Error
   if (error) return <Error content={error} />;
 
-  // Get this Recipe from all recipes
-  let recipe = null;
-  if (recipeId && recipes) {
-    recipe = recipes.find(item => parseInt(item.id, 10) === parseInt(recipeId, 10));
+  // Get this Post from all Posts
+  let post = null;
+  if (postId && posts) {
+    post = posts.find(item => parseInt(item.id, 10) === parseInt(postId, 10));
   }
 
-  // Recipe not found
-  if (!recipe) return <Error content={ErrorMessages.recipe404} />;
+  // Post not found
+  if (!post) return <Error content={ErrorMessages.post404} />;
 
   // Build Ingredients listing
-  const ingredients = recipe.ingredients.map(item => (
+  const ingredients = post.ingredients.map(item => (
     <ListItem key={item} rightIcon={{ style: { opacity: 0 } }}>
       <Text>
         {item}
@@ -35,7 +35,7 @@ const RecipeView = ({
   ));
 
   // Build Method listing
-  const method = recipe.method.map(item => (
+  const method = post.method.map(item => (
     <ListItem key={item} rightIcon={{ style: { opacity: 0 } }}>
       <Text>
         {item}
@@ -46,16 +46,16 @@ const RecipeView = ({
   return (
     <Container>
       <Content padder>
-        <Image source={{ uri: recipe.image }} style={{ height: 100, width: null, flex: 1 }} />
+        <Image source={{ uri: post.image }} style={{ height: 100, width: null, flex: 1 }} />
 
         <Spacer size={25} />
         <H3>
-          {recipe.title}
+          {post.title}
         </H3>
         <Text>
           by
           {' '}
-          {recipe.author}
+          {post.author}
         </Text>
         <Spacer size={15} />
 
@@ -68,7 +68,7 @@ const RecipeView = ({
           <CardItem>
             <Body>
               <Text>
-                {recipe.body}
+                {post.postBody}
               </Text>
             </Body>
           </CardItem>
@@ -108,14 +108,14 @@ const RecipeView = ({
   );
 };
 
-RecipeView.propTypes = {
+PostView.propTypes = {
   error: PropTypes.string,
-  recipeId: PropTypes.string.isRequired,
-  recipes: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  postId: PropTypes.string.isRequired,
+  posts: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
-RecipeView.defaultProps = {
+PostView.defaultProps = {
   error: null,
 };
 
-export default RecipeView;
+export default PostView;

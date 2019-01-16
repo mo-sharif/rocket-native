@@ -13,7 +13,7 @@
       "title": "Dinner"
     }
   ],
-  "recipes" : [
+  "posts" : [
     {
       "id": 1,
       "slug": "this-is-an-article",

@@ -24,7 +24,7 @@ import Error from "./Error";
 import Header from "./Header";
 import Spacer from "./Spacer";
 
-const RecipeListing = ({ error, loading, posts, reFetch }) => {
+const PostListing = ({ error, loading, posts, reFetch }) => {
   // Loading
   if (loading) return <Loading />;
 
@@ -38,10 +38,7 @@ const RecipeListing = ({ error, loading, posts, reFetch }) => {
   return (
     <Container>
       <Content padder>
-        <Header
-          title="Top Posts"
-          content="Showing all posts in our database"
-        />
+        <Header title="Top Posts" content="Showing all posts in our database" />
         <ListItem onPress={Actions.newPost} icon>
           <Left>
             <Icon name="add-circle" />
@@ -73,7 +70,7 @@ const RecipeListing = ({ error, loading, posts, reFetch }) => {
                   onPress={() => onPress(item)}
                   style={{ flex: 1 }}
                 >
-{/*                   <Image
+                  {/*                   <Image
                     source={{ uri: item.image }}
                     style={{
                       height: 200,
@@ -117,15 +114,15 @@ const RecipeListing = ({ error, loading, posts, reFetch }) => {
   );
 };
 
-RecipeListing.propTypes = {
+PostListing.propTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
   posts: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   reFetch: PropTypes.func
 };
-RecipeListing.defaultProps = {
+PostListing.defaultProps = {
   error: null,
   reFetch: null
 };
 
-export default RecipeListing;
+export default PostListing;

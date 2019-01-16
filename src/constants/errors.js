@@ -17,8 +17,8 @@ export default {
   missingPostBody: 'Post body is missing',
   passwordsDontMatch: 'Passwords do not match',
 
-  // Recipes
-  recipe404: 'Recipe not found',
+  // Posts
+post404: 'Post not found',
   missingMealId: 'Missing meal definition',
 
   // Locale
