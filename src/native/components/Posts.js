@@ -65,6 +65,7 @@ const PostListing = ({ error, loading, posts, reFetch, member }) => {
           renderItem={({ item }) => (
             <Card
               transparent
+              id={item.id}
               style={{
                 paddingHorizontal: 0,
                 borderRadius: 5,
