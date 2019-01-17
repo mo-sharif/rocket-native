@@ -19,14 +19,19 @@ export function addPost(formData) {
 
       // Go to Firebase
       // Send user details to Firebase database
-
-      FirebaseRef.child(`posts`)
-        .push({
+      let newPostKey = FirebaseRef.child(`posts`).push().key
+    
+      let newData={
+          id: newPostKey,
           postTitle,
           postBody,
           postDate: Firebase.database.ServerValue.TIMESTAMP
-        })
-        .then(() => statusMessage(dispatch, "loading", false).then(resolve));
+       }
+       let updates = {}
+       updates['/posts/' + newPostKey] = newData
+
+        return FirebaseRef.update(updates)
+       .then(() => statusMessage(dispatch, "loading", false).then(resolve));
     }).catch(async err => {
       await statusMessage(dispatch, "loading", false);
       throw err.message;
@@ -40,7 +45,7 @@ export function getPosts() {
 
   return dispatch =>
     new Promise(resolve =>
-      FirebaseRef.child("posts").on("value", snapshot => {
+      FirebaseRef.child("posts").limitToFirst(100).on("value", snapshot => {
         //const posts = snapshot.val() || [];
         const posts =
           Object.keys(snapshot.val()).map(user => snapshot.val()[user]) || [];

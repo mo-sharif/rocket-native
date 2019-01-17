@@ -32,7 +32,7 @@ export function getUsers() {
 
   return dispatch =>
     new Promise(resolve =>
-      FirebaseRef.child("users").on("value", snapshot => {
+      FirebaseRef.child("users").limitToFirst(100).on("value", snapshot => {
         const users =
           Object.keys(snapshot.val()).map(user => snapshot.val()[user]) || [];
           //console.log('------>Actions' + JSON.stringify(users))
