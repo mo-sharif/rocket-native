@@ -22,7 +22,8 @@ export default function postsReducer(state = initialState, action) {
       if (action.data && typeof action.data === "object") {
         posts = action.data.map(item => ({
           postTitle: item.postTitle,
-          postBody: item.postBody
+          postBody: item.postBody,
+          id: item.id
         }));
       }
 

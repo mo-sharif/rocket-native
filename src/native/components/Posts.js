@@ -32,9 +32,9 @@ const PostListing = ({ error, loading, posts, reFetch, member }) => {
   if (error) return <Error content={error} />;
 
   const keyExtractor = item => item.id;
-  console.log(posts)
+
   const onPress = item =>
-    {Actions.posts({ match: { params: { id: String(item.id) } } });console.log('⚽⚽⚽⚽⚽  ' + JSON.stringify(item))};
+    {Actions.post({ match: { params: { id: String(item.id) } } })};
 
   return (
     <Container>

@@ -19,19 +19,21 @@ export function addPost(formData) {
 
       // Go to Firebase
       // Send user details to Firebase database
-      let newPostKey = FirebaseRef.child(`posts`).push().key
-    
-      let newData={
-          id: newPostKey,
-          postTitle,
-          postBody,
-          postDate: Firebase.database.ServerValue.TIMESTAMP
-       }
-       let updates = {}
-       updates['/posts/' + newPostKey] = newData
+      let newPostKey = FirebaseRef.child(`posts`).push().key;
 
-        return FirebaseRef.update(updates)
-       .then(() => statusMessage(dispatch, "loading", false).then(resolve));
+      let newData = {
+        id: newPostKey,
+        postTitle,
+        postBody,
+        postDate: Firebase.database.ServerValue.TIMESTAMP
+      };
+      let updates = {};
+      updates[`/posts/ ${newPostKey}`] = newData;
+
+      return FirebaseRef.update(updates).then(async () => {
+        await statusMessage(dispatch, "success", true)
+        await statusMessage(dispatch, "loading", false).then(resolve);
+      });
     }).catch(async err => {
       await statusMessage(dispatch, "loading", false);
       throw err.message;
@@ -45,17 +47,19 @@ export function getPosts() {
 
   return dispatch =>
     new Promise(resolve =>
-      FirebaseRef.child("posts").limitToFirst(100).on("value", snapshot => {
-        //const posts = snapshot.val() || [];
-        const posts =
-          Object.keys(snapshot.val()).map(user => snapshot.val()[user]) || [];
-        return resolve(
-          dispatch({
-            type: "GET_ALL_POSTS",
-            data: posts
-          })
-        );
-      })
+      FirebaseRef.child("posts")
+        .limitToFirst(100)
+        .on("value", snapshot => {
+          //const posts = snapshot.val() || [];
+          const posts =
+            Object.keys(snapshot.val()).map(user => snapshot.val()[user]) || [];
+          return resolve(
+            dispatch({
+              type: "GET_ALL_POSTS",
+              data: posts
+            })
+          );
+        })
     ).catch(e => console.log(e));
 }
 /**

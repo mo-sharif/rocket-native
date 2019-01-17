@@ -15,17 +15,16 @@ const PostView = ({
 }) => {
   // Error
   if (error) return <Error content={error} />;
-
   // Get this Post from all Posts
   let post = null;
   if (postId && posts) {
-    post = posts.find(item => parseInt(item.id, 10) === parseInt(postId, 10));
+    post = posts.find(item => item.id === postId);
   }
 
   // Post not found
   if (!post) return <Error content={ErrorMessages.post404} />;
 
-  // Build Ingredients listing
+/*   // Build Ingredients listing
   const ingredients = post.ingredients.map(item => (
     <ListItem key={item} rightIcon={{ style: { opacity: 0 } }}>
       <Text>
@@ -41,7 +40,7 @@ const PostView = ({
         {item}
       </Text>
     </ListItem>
-  ));
+  )); */
 
   return (
     <Container>
@@ -50,7 +49,7 @@ const PostView = ({
 
         <Spacer size={25} />
         <H3>
-          {post.title}
+          {post.postTitle}
         </H3>
         <Text>
           by
@@ -74,7 +73,7 @@ const PostView = ({
           </CardItem>
         </Card>
 
-        <Card>
+     {/*    <Card>
           <CardItem header bordered>
             <Text>
               Info
@@ -100,7 +99,7 @@ const PostView = ({
               {method}
             </List>
           </CardItem>
-        </Card>
+        </Card> */}
 
         <Spacer size={20} />
       </Content>

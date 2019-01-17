@@ -46,7 +46,6 @@ class PostListing extends Component {
     const { Layout, posts, match, member } = this.props;
     const id =
       match && match.params && match.params.id ? match.params.id : null;
-      console.log('❤️' + id)
     return (
       <Layout
         member={member}
