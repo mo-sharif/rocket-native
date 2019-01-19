@@ -23,33 +23,35 @@ export default class PhoneAuth extends Component {
   };
 
   login = async () => {
-    const { type, token, accessToken } = await Facebook.logInWithReadPermissionsAsync(
+    const { type, token } = await Facebook.logInWithReadPermissionsAsync(
       facebook.appId,
       { behavior: "native", public_profile: "email" }
     );
-    console.log(await Facebook.logInWithReadPermissionsAsync(
-      facebook.appId,
-      { behavior: "native", public_profile: "email" }
-    ))
     if (type === "success") {
-      this.callGraph(token);
-      const credential = Firebase.auth.FacebookAuthProvider.credential(accessToken);
-      this.firebaseLogin(credential);
+      await this.callGraph(token);
+      const credential = await Firebase.auth.FacebookAuthProvider.credential(token)
+      this.firebaseLogin(credential)
+      
     }
   };
 
   // Sign in with credential from the Facebook user.
-  firebaseLogin = token => {
-    Firebase.auth().then( success => { 
-      console.log("Firebase success: " + JSON.stringify(success)); 
-    })
-      .signInWithCredential(token)
+  firebaseLogin =  (credential) => {
+     Firebase.auth()
+      .signInAndRetrieveDataWithCredential(credential)
       .catch(error => {
         // Handle Errors here.
         console.warn("Login Error ⚠️ ", error);
       });
   };
-
+  /**
+   * Register a subscription callback for changes of the currently authenticated user
+   * 
+   * @param callback Called with the current authenticated user as first argument
+   */
+ static subscribeAuthChange(callback) {
+    Firebase.auth().onAuthStateChanged(callback);
+  }
   renderButton = () => (
     <TouchableOpacity onPress={() => this.login()}>
       <View
