@@ -17,6 +17,7 @@ import Messages from "./Messages";
 import { translate } from "../../i18n";
 import Header from "./Header";
 import Spacer from "./Spacer";
+import FaceBookAuth from '../../containers/FaceBookAuth'
 
 class Login extends React.Component {
   static propTypes = {
@@ -108,6 +109,7 @@ class Login extends React.Component {
               </Button>
             </View>
           </Form>
+          <FaceBookAuth/>
         </Content>
       </Container>
     );
