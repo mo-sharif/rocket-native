@@ -19,26 +19,30 @@ export default class PhoneAuth extends Component {
       `https://graph.facebook.com/me?access_token=${token}&fields=id,name,email,about,picture`
     );
     const responseJSON = JSON.stringify(await response.json());
-    console.log('responseJSON responseJSON: ' + responseJSON)
     this.setState({ responseJSON });
   };
 
   login = async () => {
-    const { type, token } = await Facebook.logInWithReadPermissionsAsync(
+    const { type, token, accessToken } = await Facebook.logInWithReadPermissionsAsync(
       facebook.appId,
       { behavior: "native", public_profile: "email" }
     );
-console.log("TYPE:   TYPE" + type)
+    console.log(await Facebook.logInWithReadPermissionsAsync(
+      facebook.appId,
+      { behavior: "native", public_profile: "email" }
+    ))
     if (type === "success") {
       this.callGraph(token);
-      //const credential = Firebase.auth.FacebookAuthProvider.credential(token);
-      this.firebaseLogin(token);
+      const credential = Firebase.auth.FacebookAuthProvider.credential(accessToken);
+      this.firebaseLogin(credential);
     }
   };
 
   // Sign in with credential from the Facebook user.
   firebaseLogin = token => {
-    Firebase.auth()
+    Firebase.auth().then( success => { 
+      console.log("Firebase success: " + JSON.stringify(success)); 
+    })
       .signInWithCredential(token)
       .catch(error => {
         // Handle Errors here.
