@@ -22,9 +22,9 @@ class Login extends Component {
     errorMessage: null,
   }
 
-  onFormSubmit = (data) => {
+  onFormSubmit = (data, type) => {
     const { onFormSubmit } = this.props;
-    return onFormSubmit(data)
+    return onFormSubmit(data, type)
       .catch((err) => { this.setState({ errorMessage: err }); throw err; });
   }
 

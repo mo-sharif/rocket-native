@@ -17,7 +17,6 @@ import Messages from "./Messages";
 import { translate } from "../../i18n";
 import Header from "./Header";
 import Spacer from "./Spacer";
-import FaceBookAuth from '../../containers/FaceBookAuth'
 
 class Login extends React.Component {
   static propTypes = {
@@ -55,9 +54,9 @@ class Login extends React.Component {
     });
   };
 
-  handleSubmit = () => {
+  handleSubmit = (type) => {
     const { onFormSubmit } = this.props;
-    onFormSubmit(this.state)
+    onFormSubmit(this.state, type)
       .then(() => {
         Actions.home();
       })
@@ -104,12 +103,16 @@ class Login extends React.Component {
             <Spacer size={20} />
 
             <View padder>
-              <Button block onPress={this.handleSubmit}>
+              <Button block onPress={e => this.handleSubmit('reg', e)}>
                 <Text>{translate("Login", locale)}</Text>
+              </Button>
+              <Spacer size={20} />
+              <Button block onPress={e => this.handleSubmit('fb', e)}>
+                <Text>{translate("LoginwithFacebook", locale)}</Text>
               </Button>
             </View>
           </Form>
-          <FaceBookAuth/>
+
         </Content>
       </Container>
     );
