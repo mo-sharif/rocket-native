@@ -31,9 +31,8 @@ const Home = ({ member }) => (
               content="Our kit provides with all tools you need to get started on your next mobile idea"
             />
           </Content>
-
           <Image
-            source={{ uri: img_url }}
+            source={{ uri: member.avatar || img_url }}
             resizeMode="contain"
             style={{
               height: 250,

@@ -27,7 +27,8 @@ class Login extends React.Component {
     error: PropTypes.string,
     success: PropTypes.string,
     loading: PropTypes.bool.isRequired,
-    onFormSubmit: PropTypes.func.isRequired
+    onFormSubmit: PropTypes.func.isRequired,
+    facebookSignin: PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -46,6 +47,7 @@ class Login extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.facebookSignin = this.facebookSignin.bind(this);
   }
 
   handleChange = (name, val) => {
@@ -54,14 +56,23 @@ class Login extends React.Component {
     });
   };
 
-  handleSubmit = (type) => {
+  handleSubmit = () => {
     const { onFormSubmit } = this.props;
-    onFormSubmit(this.state, type)
+    onFormSubmit(this.state)
       .then(() => {
         Actions.home();
       })
       .catch(e => console.log(`Error: ${e}`));
   };
+
+  facebookSignin = async () => {
+    const {facebookSignin} = this.props
+    facebookSignin(this.state)
+    .then(() =>{
+      Actions.home();
+    })
+    .catch(e => console.log(`Error!! ${e}`))
+  }
 
   render() {
     const { loading, error, success, locale } = this.props;
@@ -103,11 +114,11 @@ class Login extends React.Component {
             <Spacer size={20} />
 
             <View padder>
-              <Button block onPress={e => this.handleSubmit('reg', e)}>
+              <Button block onPress={this.handleSubmit}>
                 <Text>{translate("Login", locale)}</Text>
               </Button>
               <Spacer size={20} />
-              <Button block onPress={e => this.handleSubmit('fb', e)}>
+              <Button style={{backgroundColor: '#4267b2'}} block onPress={this.facebookSignin}>
                 <Text>{translate("LoginwithFacebook", locale)}</Text>
               </Button>
             </View>

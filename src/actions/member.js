@@ -89,8 +89,7 @@ export function getMemberData() {
 /**
   * Login to Firebase with Email/Password
   */
-export function login(formData, type) {
-  console.log("type: " + type)
+export function login(formData) {
   const {
     email,
     password,

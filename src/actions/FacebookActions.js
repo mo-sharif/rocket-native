@@ -1,159 +1,132 @@
 // import { AsyncStorage } from 'react-native';
-import { Facebook } from 'expo';
-import firebase from 'firebase';
-import { facebook } from '../constants/facebook';
+import { Facebook } from "expo";
+import { Firebase, FirebaseRef } from "../lib/firebase";
+import statusMessage from "./status";
+
+import fb from "../constants/facebook";
 // import { emailChanged, passwordChanged, signupUser } from '../actions';
 
-import {
-  FACEBOOK_LOGIN_SUCCESS,
-  FACEBOOK_LOGIN_FAIL,
-  LOGIN_STATUS_CHANGED,
-  ERROR_SET
-} from './types';
+export function facebookSignin() {
+  return async dispatch => {
+    await statusMessage(dispatch, "loading", true);
 
-
-export const facebookSignin = () => {
-
-    return async (dispatch) => {
-      console.log('facebook_Actions.js:line17:fbappid');
-      console.log(facebook.appId);
-
-      dispatch({
-        type: LOGIN_STATUS_CHANGED,
-        payload: 'fbchecking'
-      });
-
-
-      let { type, token } = await Facebook.logInWithReadPermissionsAsync(facebook.appId, {
-        permissions: ['public_profile', 'email']
-      });
-
-
-
-      console.log('---credential---');
-      console.log(credential);
-      if (type === 'cancel') {
-        dispatch({
-          type: LOGIN_STATUS_CHANGED,
-          payload: 'fbloginfailed'
-        });
-        return (dispatch({ type: FACEBOOK_LOGIN_FAIL }));
+    const { type, token } = await Facebook.logInWithReadPermissionsAsync(
+      fb.appId,
+      {
+        permissions: ["public_profile", "email"]
       }
+    );
 
-      var credential = firebase.auth.FacebookAuthProvider.credential(token);
+    if (type === "cancel") {
+      return await statusMessage(dispatch, "error", "Login Canceled");
+    }
 
-      console.log('---token---');
-      console.log(token);
+    try {
+  /*     await Firebase.auth().setPersistence(
+        Firebase.auth.Auth.Persistence.LOCAL
+      ); // Set persistent auth state */
+      const credential = Firebase.auth.FacebookAuthProvider.credential(token);
+      let user = await Firebase.auth().signInAndRetrieveDataWithCredential(
+        credential
+      );
+      /* let emailcheck = await FirebaseRef.child(`/users/${user.user.uid}/userDetails/email`).on('value');
+        let emailcheckflag = emailcheck.val(); */
 
-      try {
+      if (!user) return false;
+      const ref = FirebaseRef.child(`users/${user.user.uid}`);
 
-        let user = await firebase.auth().signInWithCredential(credential);
-        let emailcheck = await firebase.database().ref(`/users/${user.uid}/userDetails/email`).once('value');
-        var emailcheckflag = emailcheck.val();
+      return ref.on("value", snapshot => {
+        const userData = snapshot.val() || [];
 
-        if (emailcheckflag) {
-          // update user properties to firebase
-          firebase.database().ref(`/users/${user.uid}/userDetails`).update({
-            fbEmail: user.email,
-            fbDisplayName: user.displayName,
-            fbPhotoURL: user.photoURL
-          });
-
-        }
-
-      } catch (error) {
-        console.log('fb_actions.js:line57:error');
-        console.log(error);
-        let err_message = error.message;
-        dispatch({
-          type: LOGIN_STATUS_CHANGED,
-          payload: 'notloggedin'
+        // update user properties to Firebase
+        FirebaseRef.child(`/users/${user.user.uid}`).update({
+          fbEmail: user.user.email,
+          fbDisplayName: user.user.displayName,
+          avatar: user.user.photoURL,
+          firstName: user.additionalUserInfo.profile.first_name,
+          lastName: user.additionalUserInfo.profile.last_name,
         });
-        dispatch({
-          type: ERROR_SET,
-          payload: err_message
+        return dispatch({
+          type: "USER_DETAILS_UPDATE",
+          data: userData
         });
-      }
-      // await AsyncStorage.setItem('fb_token', token);
-      if (emailcheckflag) {
+      });
+    } catch (error) {
+      console.log("fb_actions.js:line50:error");
+      console.log(error);
+      let err_message = error.message;
+
+      await statusMessage(dispatch, "loading", false);
+      await statusMessage(dispatch, "error", err_message);
+    }
+    // await AsyncStorage.setItem('fb_token', token);
+    /*     if (emailcheckflag) {
         dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: token });
       } else {
         // case where the user has signed in without signing up.
-        await firebase.auth().signOut();
+        await Firebase.auth().signOut();
         dispatch({ type: ERROR_SET, payload: 'Please Register first ...'});
-      }
-
+      } */
   };
+}
 
-};
+export const facebookSignup = ({ email, phone, firstname, lastname }) => {
+  return async dispatch => {
+    console.log(fb.appId);
 
-export const facebookSignup = ({ email, phone, firstname, lastname  }) => {
+    dispatch({
+      type: "LOGIN_STATUS_CHANGED",
+      payload: "fbchecking"
+    });
 
-    return async (dispatch) => {
-      console.log(facebook.appId);
+    let { type, token } = await Facebook.logInWithReadPermissionsAsync(
+      fb.appId,
+      {
+        permissions: ["public_profile", "email"]
+      }
+    );
 
+    console.log(credential);
+    if (type === "cancel") {
       dispatch({
-        type: LOGIN_STATUS_CHANGED,
-        payload: 'fbchecking'
+        type: "LOGIN_STATUS_CHANGED",
+        payload: "fbloginfailed"
       });
+      return dispatch({ type: "FACEBOOK_LOGIN_FAIL" });
+    }
 
-      let { type, token } = await Facebook.logInWithReadPermissionsAsync(facebook.appId, {
-        permissions: ['public_profile', 'email']
+    const credential = Firebase.auth.FacebookAuthProvider.credential(token);
+    console.log(token);
+
+    try {
+      let user = await Firebase.auth().signInWithCredential(credential);
+      console.log(user);
+      console.log(user.user.email);
+      var displayName = firstname + " " + lastname;
+      console.log(email);
+      console.log(displayName);
+      // write user properties to Firebase
+      FirebaseRef.child(`/users/${user.user.uid}/userDetails`).set({
+        email: email,
+        phone: phone,
+        firstname: firstname,
+        lastname: lastname,
+        displayName: displayName,
+        fbEmail: user.user.email,
+        fbDisplayName: user.user.displayName,
+        fbPhotoURL: user.user.photoURL
       });
-
-
-
-      console.log(credential);
-      if (type === 'cancel') {
-        dispatch({
-          type: LOGIN_STATUS_CHANGED,
-          payload: 'fbloginfailed'
-        });
-        return (dispatch({ type: FACEBOOK_LOGIN_FAIL }));
-      }
-
-      var credential = firebase.auth.FacebookAuthProvider.credential(token);
-      console.log(token);
-
-      try {
-        let user = await firebase.auth().signInWithCredential(credential);
-        console.log(user);
-        console.log(user.email);
-        var displayName = firstname + ' ' + lastname;
-        console.log(email);
-        console.log(displayName);
-        // write user properties to firebase
-        firebase.database().ref(`/users/${user.uid}/userDetails`).set({
-          email: email,
-          phone: phone,
-          firstname: firstname,
-          lastname: lastname,
-          displayName: displayName,
-          fbEmail: user.email,
-          fbDisplayName: user.displayName,
-          fbPhotoURL: user.photoURL
-        });
-        dispatch({
-          type: ERROR_SET,
-          payload: 'Welcome to our online shop'
-        });
-
-      } catch (error) {
-        console.log(error);
-        dispatch({
-          type: LOGIN_STATUS_CHANGED,
-          payload: 'notloggedin'
-        });
-        let err_message = error.message;
-        dispatch({
-          type: ERROR_SET,
-          payload: err_message
-        });
-      }
-      // await AsyncStorage.setItem('fb_token', token);
-      dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: token });
+      await statusMessage(dispatch, "success", true);
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: "LOGIN_STATUS_CHANGED",
+        payload: "notloggedin"
+      });
+      let err_message = error.message;
+      await statusMessage(dispatch, "error", err_message);
+    }
+    // await AsyncStorage.setItem('fb_token', token);
+    dispatch({ type: "FACEBOOK_LOGIN_SUCCESS", token });
   };
-
-
-
 };

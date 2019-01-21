@@ -26,6 +26,7 @@ export default function memberReducer(state = initialState, action) {
           firstName: action.data.firstName,
           lastName: action.data.lastName,
           signedUp: action.data.signedUp,
+          avatar: action.data.avatar,
           role: action.data.role,
         };
       }
