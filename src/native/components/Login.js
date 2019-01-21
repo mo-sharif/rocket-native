@@ -9,7 +9,8 @@ import {
   Input,
   Text,
   Button,
-  View
+  View,
+  Icon
 } from "native-base";
 import { Actions } from "react-native-router-flux";
 import Loading from "./Loading";
@@ -66,13 +67,13 @@ class Login extends React.Component {
   };
 
   facebookSignin = async () => {
-    const {facebookSignin} = this.props
+    const { facebookSignin } = this.props;
     facebookSignin(this.state)
-    .then(() =>{
-      Actions.home();
-    })
-    .catch(e => console.log(`Error!! ${e}`))
-  }
+      .then(() => {
+        Actions.home();
+      })
+      .catch(e => console.log(`Error!! ${e}`));
+  };
 
   render() {
     const { loading, error, success, locale } = this.props;
@@ -118,12 +119,18 @@ class Login extends React.Component {
                 <Text>{translate("Login", locale)}</Text>
               </Button>
               <Spacer size={20} />
-              <Button style={{backgroundColor: '#4267b2'}} block onPress={this.facebookSignin}>
+
+              <Button
+                style={{ backgroundColor: "#4267b2" }}
+                block
+                onPress={this.facebookSignin}
+              >
+                <Icon active name="logo-facebook" />
+
                 <Text>{translate("LoginwithFacebook", locale)}</Text>
               </Button>
             </View>
           </Form>
-
         </Content>
       </Container>
     );

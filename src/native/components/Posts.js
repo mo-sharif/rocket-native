@@ -40,7 +40,7 @@ const PostListing = ({ error, loading, posts, reFetch, member }) => {
     <Container>
       <Content padder>
         <Header title="News" content="Showing all posts in our database" />
-        {member && member.email ? (
+        {member && member.avatar || member && member.email ? (
           <ListItem onPress={Actions.newPost} icon>
             <Left>
               <Icon name="add-circle" />

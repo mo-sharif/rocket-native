@@ -11,13 +11,13 @@ const Profile = ({ member, logout }) => (
   <Container>
     <Content>
       <List>
-        {(member && member.email)
+        {(member && member.avatar || member && member.email)
           ? (
             <View>
               <Content padder>
                 <Header
                   title={`Welcome back ${member.firstName}!`}
-                  content={`You are currently logged in as ${member.email}`}
+                  content={`You are currently logged in as ${member.email || member.displayName} `}
                 />
               </Content>
 

@@ -8,7 +8,8 @@ import {
   Left,
   List,
   Icon,
-  Container
+  Container,
+  Thumbnail
 } from "native-base";
 import PropTypes from "prop-types";
 
@@ -16,7 +17,7 @@ import Spacer from "./Spacer";
 import { Actions } from "react-native-router-flux";
 import Header from "./Header";
 
-import { Alert, Image, View } from "react-native";
+import { Alert, View } from "react-native";
 const img_url =
   "https://raw.githubusercontent.com/Mosh-Media/rocket-native/master/src/images/app-rocket.png";
 
@@ -31,17 +32,15 @@ const Home = ({ member }) => (
               content="Our kit provides with all tools you need to get started on your next mobile idea"
             />
           </Content>
-          <Image
-            source={{ uri: member.avatar || img_url }}
-            resizeMode="contain"
+          <Thumbnail
+            large
             style={{
-              height: 250,
-              width: null,
               flex: 2,
-              borderRadius: 5
+              alignSelf: "center"
             }}
+            source={{ uri: member.avatar || img_url }}
           />
-          {member && member.email ? (
+          {member && member.avatar || member && member.email ? (
             <View>
               <ListItem selected>
                 <Left>

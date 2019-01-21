@@ -31,7 +31,7 @@ export function facebookSignin() {
       );
       /* let emailcheck = await FirebaseRef.child(`/users/${user.user.uid}/userDetails/email`).on('value');
         let emailcheckflag = emailcheck.val(); */
-
+//console.log(user)
       if (!user) return false;
       const ref = FirebaseRef.child(`users/${user.user.uid}`);
 
@@ -40,9 +40,9 @@ export function facebookSignin() {
 
         // update user properties to Firebase
         FirebaseRef.child(`/users/${user.user.uid}`).update({
-          fbEmail: user.user.email,
-          fbDisplayName: user.user.displayName,
-          avatar: user.user.photoURL,
+          email: user.user.email,
+          displayName: user.user.displayName,
+          avatar: user.additionalUserInfo.photoURL,
           firstName: user.additionalUserInfo.profile.first_name,
           lastName: user.additionalUserInfo.profile.last_name,
         });
