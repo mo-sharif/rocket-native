@@ -2,16 +2,25 @@
 
 # React (Web + Native) Starter Kit
 
-#### For when you're looking to build 'the next big thing' for both web and native mobile.
-
 <a href="https://react-native-starter-app-ab8f3.firebaseapp.com/"><img src="/docs/web-demo.jpg" alt="Web Demo" height="50" /></a>
 <a href="https://expo.io/@irottweiler/rocket-native"><img src="/docs/expo-demo.jpg" alt="React Native Expo Demo" height="50" /></a>
+
+---
+
+## 🏆 Goal
+
+- __Open Source__
+- __Web and Native__
+- __Easy Deployment__
+- __Social Authentication__
 
 ---
 
 ## 👋 Intro
 
 This boilerplate launches with a [React web app](https://reactjs.org/) and [React Native app](https://facebook.github.io/react-native/) sharing a single code base. It shares the 'business logic' (_i.e. actions, containers, reducers_) across the platforms, whilst allowing flexibility in View components to ensure your project looks and feels native in each platform.
+
+This project is based on [React Native Starter Kit](https://github.com/mcnamee/react-native-starter-kit).
 
 The project is _super_ helpful to kick-start your next project, as it provides a lot of the common tools you may reach for, all ready to go. Specifically:
 
@@ -34,6 +43,21 @@ The project is _super_ helpful to kick-start your next project, as it provides a
     - Shows how to read/write data from/to an external API (in our case, [Firebase](https://firebase.google.com/))
 - __Code Linting__ with
     - [Airbnb's JS Linting](https://github.com/airbnb/javascript) guidelines
+
+---
+
+## ✅ Todos
+
+- [x] Facebook & Google Login/Sign up
+- [ ] Phone number auth 
+- [ ] Sync login info with state and database (avatar, email, phone number..)
+- [ ] Build Delete/update methods to posts
+- [ ] Gallery and Categories for each posts
+- [ ] User management functionality (add/delete/update)
+- [ ] User Roles and Admin Roles
+- [ ] Build Theme
+- [ ] Write Test code              
+
 
 ---
 
@@ -86,17 +110,3 @@ Via webpack, starts a localhost server on port 3001 [http://localhost:3001](http
 
 - Save code and it auto refreshes
 - Install [Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en) into Chrome to see the state of Redux
-
----
-
-## 👊 Further Help?
-
-This repo is a great place to start, but if you'd prefer to sit back and have your new project built for you, [get in touch with me directly](https://mcnam.ee) and I can organise a quote.
-
----
-
-## 💡 Inspiration
-
-- [This blog post](http://jkaufman.io/react-web-native-codesharing/) helped put the ideas into action
-
-_If there's any other ideas presented in this repo, that you think worth mentioning - feel free open a pull request :)_
