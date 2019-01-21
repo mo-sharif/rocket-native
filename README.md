@@ -39,6 +39,7 @@ The project is _super_ helpful to kick-start your next project, as it provides a
     - [Expo](https://expo.io/)
 - __User authentication__ example through
     - [Firebase](https://firebase.google.com/)
+    - [Facebook EXPO Auth](https://firebase.google.com/)
 - __API/Data example__
     - Shows how to read/write data from/to an external API (in our case, [Firebase](https://firebase.google.com/))
 - __Code Linting__ with

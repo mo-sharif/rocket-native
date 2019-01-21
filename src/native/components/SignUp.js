@@ -8,23 +8,28 @@ import {
   Item,
   Label,
   Input,
-  Button
+  Button,
+  Icon
 } from "native-base";
 import { Actions } from "react-native-router-flux";
 import Loading from "./Loading";
 import Messages from "./Messages";
 import Header from "./Header";
 import Spacer from "./Spacer";
+import { translate } from "../../i18n";
 
 class SignUp extends React.Component {
   static propTypes = {
+    locale: PropTypes.string,
     error: PropTypes.string,
     loading: PropTypes.bool.isRequired,
-    onFormSubmit: PropTypes.func.isRequired
+    onFormSubmit: PropTypes.func.isRequired,
+    facebookSignin: PropTypes.func.isRequired
   };
 
   static defaultProps = {
-    error: null
+    error: null,
+    locale: null
   };
 
   constructor(props) {
@@ -39,6 +44,7 @@ class SignUp extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.facebookSignin = this.facebookSignin.bind(this);
   }
 
   handleChange = (name, val) => {
@@ -54,8 +60,17 @@ class SignUp extends React.Component {
       .catch(e => console.log(`Error: ${e}`));
   };
 
+  facebookSignin = async () => {
+    const { facebookSignin } = this.props;
+    facebookSignin(this.state)
+      .then(() => {
+        Actions.home();
+      })
+      .catch(e => console.log(`Error!! ${e}`));
+  };
+
   render() {
-    const { loading, error } = this.props;
+    const { loading, error, locale } = this.props;
 
     if (loading) return <Loading />;
 
@@ -112,6 +127,17 @@ class SignUp extends React.Component {
 
             <Button block onPress={this.handleSubmit}>
               <Text>Sign Up</Text>
+            </Button>
+            <Spacer size={20} />
+
+            <Button
+              style={{ backgroundColor: "#4267b2" }}
+              block
+              onPress={this.facebookSignin}
+            >
+              <Icon active name="logo-facebook" />
+
+              <Text>{translate("LoginwithFacebook", locale)}</Text>
             </Button>
           </Form>
         </Content>

@@ -17,7 +17,7 @@ import Spacer from "./Spacer";
 import { Actions } from "react-native-router-flux";
 import Header from "./Header";
 
-import { Alert, View } from "react-native";
+import { Image, View } from "react-native";
 const img_url =
   "https://raw.githubusercontent.com/Mosh-Media/rocket-native/master/src/images/app-rocket.png";
 
@@ -32,16 +32,16 @@ const Home = ({ member }) => (
               content="Our kit provides with all tools you need to get started on your next mobile idea"
             />
           </Content>
-          <Thumbnail
-            large
-            style={{
-              flex: 2,
-              alignSelf: "center"
-            }}
-            source={{ uri: member.avatar || img_url }}
-          />
-          {member && member.avatar || member && member.email ? (
+          {(member && member.avatar) || (member && member.email) ? (
             <View>
+              <Thumbnail
+                large
+                style={{
+                  flex: 2,
+                  alignSelf: "center"
+                }}
+                source={{ uri: member.avatar || img_url }}
+              />
               <ListItem selected>
                 <Left>
                   <Text>{`Welcome back ${member.firstName}!`}</Text>
@@ -61,6 +61,16 @@ const Home = ({ member }) => (
             </View>
           ) : (
             <View>
+              <Image
+                source={{ uri: member.avatar || img_url }}
+                resizeMode="contain"
+                style={{
+                  height: 250,
+                  width: null,
+                  flex: 2,
+                  borderRadius: 5
+                }}
+              />
               <ListItem onPress={Actions.signUp} selected>
                 <Left>
                   <Text>New Account</Text>

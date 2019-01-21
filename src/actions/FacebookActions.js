@@ -22,34 +22,33 @@ export function facebookSignin() {
     }
 
     try {
-  /*     await Firebase.auth().setPersistence(
+      await Firebase.auth().setPersistence(
         Firebase.auth.Auth.Persistence.LOCAL
-      ); // Set persistent auth state */
+      ); // Set persistent auth state
       const credential = Firebase.auth.FacebookAuthProvider.credential(token);
       let user = await Firebase.auth().signInAndRetrieveDataWithCredential(
         credential
       );
-      /* let emailcheck = await FirebaseRef.child(`/users/${user.user.uid}/userDetails/email`).on('value');
-        let emailcheckflag = emailcheck.val(); */
-//console.log(user)
+      let emailcheck = await FirebaseRef.child(
+        `/users/${user.user.uid}/userDetails/email`
+      ).on("value");
+      let emailcheckflag = emailcheck.val();
+      console.log(emailcheckflag);
       if (!user) return false;
       const ref = FirebaseRef.child(`users/${user.user.uid}`);
 
       return ref.on("value", snapshot => {
         const userData = snapshot.val() || [];
-
         // update user properties to Firebase
-        FirebaseRef.child(`/users/${user.user.uid}`).update({
-          email: user.user.email,
-          displayName: user.user.displayName,
-          avatar: user.additionalUserInfo.photoURL,
-          firstName: user.additionalUserInfo.profile.first_name,
-          lastName: user.additionalUserInfo.profile.last_name,
-        });
-        return dispatch({
-          type: "USER_DETAILS_UPDATE",
-          data: userData
-        });
+        FirebaseRef.child(`/users/${user.user.uid}`)
+          .update({
+            email: user.user.email,
+            displayName: user.user.displayName,
+            avatar: user.user.photoURL,
+            firstName: user.additionalUserInfo.profile.first_name,
+            lastName: user.additionalUserInfo.profile.last_name
+          })
+          .then(async () => await statusMessage(dispatch, "loading", false));
       });
     } catch (error) {
       console.log("fb_actions.js:line50:error");
