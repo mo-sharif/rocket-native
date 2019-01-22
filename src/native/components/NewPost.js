@@ -15,6 +15,7 @@ import Loading from "./Loading";
 import Messages from "./Messages";
 import Header from "./Header";
 import Spacer from "./Spacer";
+import PostPic from "../../containers/PostPic";
 
 class AddPost extends React.Component {
   static propTypes = {
@@ -68,6 +69,10 @@ class AddPost extends React.Component {
           {error && <Messages message={error} />}
 
           <Form>
+            <Item stackedLabel style={{height: 250 }}>
+              <Label>Image</Label>
+              <PostPic />
+            </Item>
             <Item stackedLabel>
               <Label>Title</Label>
               <Input
