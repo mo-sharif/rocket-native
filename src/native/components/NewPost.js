@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import {
   Container,
@@ -15,9 +15,9 @@ import Loading from "./Loading";
 import Messages from "./Messages";
 import Header from "./Header";
 import Spacer from "./Spacer";
-import PostPic from "../../containers/PostPic";
+import PostPic from "./PostPic";
 
-class AddPost extends React.Component {
+class AddPost extends Component {
   static propTypes = {
     error: PropTypes.string,
     loading: PropTypes.bool.isRequired,
@@ -32,7 +32,8 @@ class AddPost extends React.Component {
     super(props);
     this.state = {
       postTitle: "",
-      postBody: ""
+      postBody: "",
+      postPic: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);

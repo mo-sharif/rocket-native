@@ -23,4 +23,6 @@ post404: 'Post not found',
 
   // Locale
   localeDoesNotExist: 'Sorry, we do not support that local',
+  //imageUpload
+  imageUpload: 'failed at uploading the image'
 };

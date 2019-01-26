@@ -1,4 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Firebase, FirebaseRef } from "../../lib/firebase";
+import uuid from "uuid";
 import {
   ActivityIndicator,
   Clipboard,
@@ -19,16 +22,21 @@ import {
   Right,
   Icon
 } from "native-base";
-import { Constants, ImagePicker, Permissions } from "expo";
-import uuid from "uuid";
-import { Firebase, FirebaseRef } from "../lib/firebase";
+import { ImagePicker, Permissions } from "expo";
 
-console.disableYellowBox = true;
+import { uploadImage } from "../../actions/PostPic";
+import PropTypes from "prop-types";
 
-const url =
-  "https://firebasestorage.googleapis.com/v0/b/blobtest-36ff6.appspot.com/o/Obsidian.jar?alt=media&token=93154b97-8bd9-46e3-a51f-67be47a4628a";
+class PostPic extends Component {
+/*   static propTypes = {
+    locale: PropTypes.string,
+    postPic: PropTypes.string,
+    error: PropTypes.string,
+    success: PropTypes.string,
+    loading: PropTypes.bool.isRequired,
 
-export default class PostPic extends React.Component {
+  }; */
+
   state = {
     image: null,
     uploading: false
@@ -40,7 +48,7 @@ export default class PostPic extends React.Component {
   }
 
   render() {
-    let { image } = this.state;
+    const { image } = this.state;
 
     return (
       <Card>
@@ -96,7 +104,7 @@ export default class PostPic extends React.Component {
   };
 
   _maybeRenderImage = () => {
-    let { image } = this.state;
+    const { image } = this.state;
     if (!image) {
       return;
     }
@@ -170,6 +178,7 @@ export default class PostPic extends React.Component {
       this.setState({ uploading: true });
 
       if (!pickerResult.cancelled) {
+
         uploadUrl = await uploadImageAsync(pickerResult.uri);
         this.setState({ image: uploadUrl });
       }
@@ -182,30 +191,40 @@ export default class PostPic extends React.Component {
   };
 }
 
-async function uploadImageAsync(uri) {
-  // Why are we using XMLHttpRequest? See:
-  // https://github.com/expo/expo/issues/2402#issuecomment-443726662
-  const blob = await new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-    xhr.onload = function() {
-      resolve(xhr.response);
-    };
-    xhr.onerror = function(e) {
-      console.log(e);
-      reject(new TypeError("Network request failed"));
-    };
-    xhr.responseType = "blob";
-    xhr.open("GET", uri, true);
-    xhr.send(null);
-  });
+export async function uploadImageAsync(uri) {
+    // Why are we using XMLHttpRequest? See:
+    // https://github.com/expo/expo/issues/2402#issuecomment-443726662
+    const blob = await new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.onload = function() {
+        resolve(xhr.response);
+      };
+      xhr.onerror = function(e) {
+        console.log(e);
+        reject(new TypeError("Network request failed"));
+      };
+      xhr.responseType = "blob";
+      xhr.open("GET", uri, true);
+      xhr.send(null);
+    });
+  
+    const ref = Firebase.storage()
+      .ref()
+      .child(uuid.v4());
+    const snapshot = await ref.put(blob);
+    const getDownloadURL = await snapshot.ref.getDownloadURL()
+    // We're done with the blob, close and release it
+    blob.close();
+    await uploadImage(getDownloadURL)
+    return getDownloadURL;
+  }
 
-  const ref = Firebase.storage()
-    .ref()
-    .child(uuid.v4());
-  const snapshot = await ref.put(blob);
+const mapStateToProps = state => ({
+  image: state.posts.postPic || {},
+  isLoading: state.status.loading || false
+});
 
-  // We're done with the blob, close and release it
-  blob.close();
-
-  return await snapshot.ref.getDownloadURL();
+const mapDispatchToProps = {
+    uploadImage:uploadImage
 }
+export default connect(mapStateToProps, mapDispatchToProps)(PostPic);
