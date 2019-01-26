@@ -190,8 +190,7 @@ class PostPic extends Component {
     }
   };
 }
-
-export async function uploadImageAsync(uri) {
+ async function uploadImageAsync(uri) {
     // Why are we using XMLHttpRequest? See:
     // https://github.com/expo/expo/issues/2402#issuecomment-443726662
     const blob = await new Promise((resolve, reject) => {
@@ -213,18 +212,11 @@ export async function uploadImageAsync(uri) {
       .child(uuid.v4());
     const snapshot = await ref.put(blob);
     const getDownloadURL = await snapshot.ref.getDownloadURL()
+
     // We're done with the blob, close and release it
     blob.close();
-    await uploadImage(getDownloadURL)
-    return getDownloadURL;
+    return await getDownloadURL;
   }
 
-const mapStateToProps = state => ({
-  image: state.posts.postPic || {},
-  isLoading: state.status.loading || false
-});
 
-const mapDispatchToProps = {
-    uploadImage:uploadImage
-}
-export default connect(mapStateToProps, mapDispatchToProps)(PostPic);
+export default PostPic
