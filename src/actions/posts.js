@@ -5,15 +5,18 @@ import { Firebase, FirebaseRef } from "../lib/firebase";
 /**
  * New Post to Firebase
  */
-export function addPost(formData) {
+export function addPost(formData, image) {
   const { postTitle, postBody } = formData;
-
+  console.log('formData' + JSON.stringify(formData))
+  //const image = this.state.image.image
   return dispatch =>
     new Promise(async (resolve, reject) => {
       // Validation checks
       if (!postTitle)
         return reject({ message: ErrorMessages.missingPostTitle });
       if (!postBody) return reject({ message: ErrorMessages.missingPostBody });
+
+      if (!image) return reject({ message: ErrorMessages.missingPostPic });
 
       await statusMessage(dispatch, "loading", true);
 
@@ -25,13 +28,14 @@ export function addPost(formData) {
         id: newPostKey,
         postTitle,
         postBody,
+        image,
         postDate: Firebase.database.ServerValue.TIMESTAMP
       };
       let updates = {};
       updates[`/posts/ ${newPostKey}`] = newData;
 
       return FirebaseRef.update(updates).then(async () => {
-        await statusMessage(dispatch, "success", true)
+        await statusMessage(dispatch, "success", true);
         await statusMessage(dispatch, "loading", false).then(resolve);
       });
     }).catch(async err => {

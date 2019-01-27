@@ -37,12 +37,12 @@ export function facebookSignin() {
       if (!user) return false;
       const ref = FirebaseRef.child(`users/${user.user.uid}`);
 
-       ref
+      ref
         .once("value")
         .then(snapshot => {
           const userData = snapshot.val() || [];
           // update user properties to Firebase
-           FirebaseRef.child(`/users/${user.user.uid}`)
+          FirebaseRef.child(`/users/${user.user.uid}`)
             .update({
               email: user.user.email,
               displayName: user.user.displayName,
@@ -69,6 +69,5 @@ export function facebookSignin() {
       await statusMessage(dispatch, "loading", false);
       await statusMessage(dispatch, "error", err_message);
     }
-  
   };
 }

@@ -47,3 +47,19 @@ export function setError(message) {
       )
     );
 }
+
+
+/**
+ * Reset a Image in Redux (eg for logout)
+ */
+export function resetImage() {
+    return dispatch =>
+      new Promise(resolve =>
+        resolve(
+          dispatch({
+            type: "IMAGE_UPLOAD",
+            data: null
+          })
+        )
+      );
+  }

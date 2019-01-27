@@ -1,7 +1,7 @@
 import { Firebase, FirebaseRef } from "../lib/firebase";
 
 /**
- * Reset a Users in Redux (eg for logou)
+ * Reset a Users in Redux (eg for logout)
  */
 export function resetUsers(dispatch) {
   return dispatch({

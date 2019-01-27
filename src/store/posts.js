@@ -6,13 +6,13 @@ export default {
       id: 1,
       postTitle: "---",
       postBody: "---",
-      postPic: "---",
+      image: "---",
     },
     {
       id: 2,
       postTitle: "----- ---",
       postBody: "----- ---",
-      postPic: "---",
+      image: "---",
     }
   ],
   favourites: []

@@ -14,21 +14,17 @@ import {
   View,
   Text,
   Button,
-  Card,
-  CardItem,
-  Left,
+  List,
+  ListItem,
   Body,
-  Thumbnail,
   Right,
   Icon
 } from "native-base";
 import { ImagePicker, Permissions } from "expo";
-
-import { uploadImage } from "../../actions/PostPic";
 import PropTypes from "prop-types";
 
 class PostPic extends Component {
-/*   static propTypes = {
+  /*   static propTypes = {
     locale: PropTypes.string,
     postPic: PropTypes.string,
     error: PropTypes.string,
@@ -37,38 +33,47 @@ class PostPic extends Component {
 
   }; */
 
+  static defaultProps = {
+    loading: false,
+  }
+
   state = {
-    image: null,
-    uploading: false
-  };
+    error: null
+  }
 
   async componentDidMount() {
-    await Permissions.askAsync(Permissions.CAMERA_ROLL);
-    await Permissions.askAsync(Permissions.CAMERA);
+
+    await Permissions.askAsync(Permissions.CAMERA_ROLL)
+    await Permissions.askAsync(Permissions.CAMERA)
   }
 
   render() {
-    const { image } = this.state;
-
+    const { image } = this.props;
     return (
-      <Card>
+      <List>
         {image ? null : (
-          <CardItem>
+          <View>
+            <ListItem>
             <Button transparent onPress={this._pickImage}>
               <Icon active name="image" />
               <Text>Pick an image</Text>
             </Button>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </ListItem>
+            <ListItem>
             <Button transparent onPress={this._takePhoto}>
               <Icon active name="camera" />
               <Text>Take a photo</Text>
             </Button>
-
-            <Right>
-              <Text>11h ago</Text>
-            </Right>
-          </CardItem>
+              <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+            </ListItem>
+          </View>
         )}
-        <CardItem cardBody>
+        <View>
           {this._maybeRenderImage()}
           {this._maybeRenderUploadingOverlay()}
           <Body>
@@ -78,8 +83,8 @@ class PostPic extends Component {
             source={{ uri: "Image URL" }}
             style={{ height: 200, width: null, flex: 1 }}
           /> */}
-        </CardItem>
-      </Card>
+        </View>
+      </List>
     );
   }
 
@@ -90,21 +95,20 @@ class PostPic extends Component {
           style={[
             StyleSheet.absoluteFill,
             {
-              backgroundColor: "rgba(0,0,0,0.4)",
               alignItems: "center",
-              height: 250,
+              height: 2,
               justifyContent: "center"
             }
           ]}
         >
-          <ActivityIndicator color="#fff" animating size="large" />
+          <ActivityIndicator color="#007aff" animating size="large" />
         </View>
       );
     }
   };
 
   _maybeRenderImage = () => {
-    const { image } = this.state;
+    const { image } = this.props;
     if (!image) {
       return;
     }
@@ -128,7 +132,7 @@ class PostPic extends Component {
             overflow: "hidden"
           }}
         >
-          <Image source={{ uri: image }} style={{ width: 250, height: 250 }} />
+          <Image source={{ uri: image }} style={{ width: 350, height: 350 }} />
         </View>
 
         <Text
@@ -144,14 +148,14 @@ class PostPic extends Component {
 
   _share = () => {
     Share.share({
-      message: this.state.image,
+      message: this.props.image,
       title: "Check out this photo",
-      url: this.state.image
+      url: this.props.image
     });
   };
 
   _copyToClipboard = () => {
-    Clipboard.setString(this.state.image);
+    Clipboard.setString(this.props.image);
     alert("Copied image URL to clipboard");
   };
 
@@ -171,16 +175,19 @@ class PostPic extends Component {
     });
 
     this._handleImagePicked(pickerResult);
-  };
+  }
 
   _handleImagePicked = async pickerResult => {
+    //const { uploadImage } = this.props;
+
     try {
       this.setState({ uploading: true });
 
       if (!pickerResult.cancelled) {
-
-        uploadUrl = await uploadImageAsync(pickerResult.uri);
+        uploadUrl = await this._uploadImageAsync(pickerResult.uri);
+       // await uploadImage(uploadUrl);
         this.setState({ image: uploadUrl });
+
       }
     } catch (e) {
       console.log(e);
@@ -189,8 +196,8 @@ class PostPic extends Component {
       this.setState({ uploading: false });
     }
   };
-}
- async function uploadImageAsync(uri) {
+
+  _uploadImageAsync = async uri => {
     // Why are we using XMLHttpRequest? See:
     // https://github.com/expo/expo/issues/2402#issuecomment-443726662
     const blob = await new Promise((resolve, reject) => {
@@ -206,17 +213,34 @@ class PostPic extends Component {
       xhr.open("GET", uri, true);
       xhr.send(null);
     });
-  
+
     const ref = Firebase.storage()
       .ref()
       .child(uuid.v4());
     const snapshot = await ref.put(blob);
-    const getDownloadURL = await snapshot.ref.getDownloadURL()
+    const getDownloadURL = await snapshot.ref.getDownloadURL();
 
     // We're done with the blob, close and release it
     blob.close();
     return await getDownloadURL;
-  }
+  };
+}
 
+/* const mapStateToProps = state => ({
+  image: state.image.image || null
+});
+
+const mapDispatchToProps = {
+  uploadImage,
+  setUploading,
+  resetImage,
+  image
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PostPic);
+ */
 
 export default PostPic

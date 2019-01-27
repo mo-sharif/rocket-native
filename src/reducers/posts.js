@@ -76,7 +76,7 @@ export default function postsReducer(state = initialState, action) {
           title: item.title,
           body: item.body,
           category: item.category,
-          postPic: item.postPic,
+          image: item.image,
           author: item.author,
           ingredients: item.ingredients,
           method: item.method

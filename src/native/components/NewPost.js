@@ -17,6 +17,7 @@ import Header from "./Header";
 import Spacer from "./Spacer";
 import PostPic from "./PostPic";
 
+
 class AddPost extends Component {
   static propTypes = {
     error: PropTypes.string,
@@ -32,11 +33,11 @@ class AddPost extends Component {
     super(props);
     this.state = {
       postTitle: "",
-      postBody: "",
-      postPic: "",
+      postBody: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
   handleChange = (name, val) => {
@@ -46,8 +47,8 @@ class AddPost extends Component {
   };
 
   handleSubmit = () => {
-    const { onFormSubmit } = this.props;
-    onFormSubmit(this.state)
+    const { onFormSubmit, image } = this.props;
+    onFormSubmit(this.state, image)
       .then(() => {
         Actions.posts();
       })
@@ -56,7 +57,6 @@ class AddPost extends Component {
 
   render() {
     const { loading, error } = this.props;
-
     if (loading) return <Loading />;
 
     return (
@@ -70,7 +70,7 @@ class AddPost extends Component {
           {error && <Messages message={error} />}
 
           <Form>
-            <Item stackedLabel style={{height: 250 }}>
+            <Item stackedLabel style={{height: 120 }}>
               <Label>Image</Label>
               <PostPic />
             </Item>
