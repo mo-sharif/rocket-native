@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Firebase, FirebaseRef } from "../../lib/firebase";
+import { Firebase, FirebaseRef } from "../../../lib/firebase";
 import uuid from "uuid";
 import {
   ActivityIndicator,
@@ -20,13 +20,13 @@ import {
   Right,
   Icon
 } from "native-base";
-import { ImagePicker, Permissions } from "expo";
+import { ImagePicker, Permissions } from "expo"
 import PropTypes from "prop-types";
 
-class PostPic extends Component {
+class PostImg extends Component {
   /*   static propTypes = {
     locale: PropTypes.string,
-    postPic: PropTypes.string,
+    PostImg: PropTypes.string,
     error: PropTypes.string,
     success: PropTypes.string,
     loading: PropTypes.bool.isRequired,
@@ -38,9 +38,24 @@ class PostPic extends Component {
   }
 
   state = {
-    error: null
+    image: null,
+    uploading: false,
   }
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      postTitle: "",
+      postBody: "",
+    }
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange = (name, val) => {
+    this.setState({
+      [name]: val
+    })
+  }
   async componentDidMount() {
 
     await Permissions.askAsync(Permissions.CAMERA_ROLL)
@@ -48,7 +63,7 @@ class PostPic extends Component {
   }
 
   render() {
-    const { image } = this.props;
+    const { image } = this.state;
     return (
       <List>
         {image ? null : (
@@ -108,7 +123,7 @@ class PostPic extends Component {
   };
 
   _maybeRenderImage = () => {
-    const { image } = this.props;
+    const { image } = this.state;
     if (!image) {
       return;
     }
@@ -148,14 +163,14 @@ class PostPic extends Component {
 
   _share = () => {
     Share.share({
-      message: this.props.image,
+      message: this.state.image,
       title: "Check out this photo",
-      url: this.props.image
+      url: this.state.image
     });
   };
 
   _copyToClipboard = () => {
-    Clipboard.setString(this.props.image);
+    Clipboard.setString(this.state.image);
     alert("Copied image URL to clipboard");
   };
 
@@ -181,21 +196,19 @@ class PostPic extends Component {
     //const { uploadImage } = this.props;
 
     try {
-      this.setState({ uploading: true });
-
+      this.handleChange('uploading', true)
       if (!pickerResult.cancelled) {
         uploadUrl = await this._uploadImageAsync(pickerResult.uri);
        // await uploadImage(uploadUrl);
-        this.setState({ image: uploadUrl });
-
+       this.handleChange('image', uploadUrl)
       }
     } catch (e) {
       console.log(e);
       alert("Upload failed, sorry :(");
     } finally {
-      this.setState({ uploading: false });
+      this.handleChange('uploading', false)
     }
-  };
+  }
 
   _uploadImageAsync = async uri => {
     // Why are we using XMLHttpRequest? See:
@@ -224,23 +237,5 @@ class PostPic extends Component {
     blob.close();
     return await getDownloadURL;
   };
-}
-
-/* const mapStateToProps = state => ({
-  image: state.image.image || null
-});
-
-const mapDispatchToProps = {
-  uploadImage,
-  setUploading,
-  resetImage,
-  image
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PostPic);
- */
-
-export default PostPic
+} 
+export default PostImg

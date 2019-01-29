@@ -5,10 +5,11 @@ import { Firebase, FirebaseRef } from "../lib/firebase";
 /**
  * New Post to Firebase
  */
-export function addPost(formData, image) {
-  const { postTitle, postBody } = formData;
+export function addPost(formData) {
+  const { postTitle, postBody, image } = formData;
   console.log('formData' + JSON.stringify(formData))
-  //const image = this.state.image.image
+  console.log('formData' + this.state)
+
   return dispatch =>
     new Promise(async (resolve, reject) => {
       // Validation checks
@@ -16,7 +17,7 @@ export function addPost(formData, image) {
         return reject({ message: ErrorMessages.missingPostTitle });
       if (!postBody) return reject({ message: ErrorMessages.missingPostBody });
 
-      if (!image) return reject({ message: ErrorMessages.missingPostPic });
+      if (!image) return reject({ message: ErrorMessages.missingPostImg });
 
       await statusMessage(dispatch, "loading", true);
 

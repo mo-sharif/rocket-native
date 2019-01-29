@@ -15,7 +15,7 @@ import Loading from "./Loading";
 import Messages from "./Messages";
 import Header from "./Header";
 import Spacer from "./Spacer";
-import PostPic from "./PostPic";
+import PostImg from "./image/PostImg";
 
 
 class AddPost extends Component {
@@ -47,8 +47,8 @@ class AddPost extends Component {
   };
 
   handleSubmit = () => {
-    const { onFormSubmit, image } = this.props;
-    onFormSubmit(this.state, image)
+    const { onFormSubmit } = this.props;
+    onFormSubmit(this.state)
       .then(() => {
         Actions.posts();
       })
@@ -72,7 +72,7 @@ class AddPost extends Component {
           <Form>
             <Item stackedLabel style={{height: 120 }}>
               <Label>Image</Label>
-              <PostPic />
+              <PostImg />
             </Item>
             <Item stackedLabel>
               <Label>Title</Label>

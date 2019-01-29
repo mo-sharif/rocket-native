@@ -6,6 +6,7 @@ export default function imageReducer(state = initialState, action) {
   switch (action.type) {
     case "IMAGE_UPLOAD": {
       if (action.data) {
+        console.log('action.data' + action.data)
         return {
           ...state,
           loading: false,

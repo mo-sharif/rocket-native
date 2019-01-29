@@ -7,6 +7,8 @@ import statusMessage from "./status";
  */
 
 export function uploadImage(url) {
+  console.log('uploadImage ' + url)
+
   return dispatch =>
     new Promise(resolve =>
       resolve(
@@ -14,7 +16,7 @@ export function uploadImage(url) {
           type: "IMAGE_UPLOAD",
           data: url
         })
-      )
+      ).reject(e => console.log(e))
     );
 }
 
@@ -52,7 +54,7 @@ export function setError(message) {
 /**
  * Reset a Image in Redux (eg for logout)
  */
-export function resetImage() {
+/* export function resetImage() {
     return dispatch =>
       new Promise(resolve =>
         resolve(
@@ -62,4 +64,4 @@ export function resetImage() {
           })
         )
       );
-  }
+  } */

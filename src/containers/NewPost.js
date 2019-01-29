@@ -6,9 +6,8 @@ import { addPost } from "../actions/posts";
 import {
   uploadImage,
   setUploading,
-  resetImage,
-  image
-} from "../actions/PostPic";
+  resetImage
+} from "../actions/PostImg";
 
 class AddPost extends Component {
   static propTypes = {
@@ -23,7 +22,8 @@ class AddPost extends Component {
   };
 
   componentDidMount = () => {
-    resetImage();
+    console.log('componentDidMount!')
+    uploadImage(null);
   };
   onFormSubmit = data => {
     const { onFormSubmit } = this.props;
@@ -34,14 +34,13 @@ class AddPost extends Component {
   };
 
   render = () => {
-    const { posts, Layout, isLoading, image } = this.props;
+    const { posts, Layout, isLoading } = this.props;
 
     const { errorMessage } = this.state;
 
     return (
       <Layout
         posts={posts}
-        image={image}
         loading={isLoading}
         error={errorMessage}
         onFormSubmit={this.onFormSubmit}
@@ -53,7 +52,6 @@ class AddPost extends Component {
 const mapStateToProps = state => ({
   posts: state.posts || {},
   isLoading: state.status.loading || false,
-  image: state.image.image || null
 });
 
 const mapDispatchToProps = {

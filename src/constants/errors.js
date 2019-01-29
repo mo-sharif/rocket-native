@@ -15,7 +15,7 @@ export default {
   missingPassword: 'Password is missing',
   missingPostTitle: 'Post title is missing',
   missingPostBody: 'Post body is missing',
-  missingPostPic: 'Post image is missing',
+  missingPostImg: 'Post image is missing',
   passwordsDontMatch: 'Passwords do not match',
 
   // Posts
