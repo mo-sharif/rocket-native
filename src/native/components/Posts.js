@@ -33,14 +33,15 @@ const PostListing = ({ error, loading, posts, reFetch, member }) => {
 
   const keyExtractor = item => item.id;
 
-  const onPress = item =>
-    {Actions.post({ match: { params: { id: String(item.id) } } })};
+  const onPress = item => {
+    Actions.post({ match: { params: { id: String(item.id) } } });
+  };
 
   return (
     <Container>
       <Content padder>
         <Header title="News" content="Showing all posts in our database" />
-        {member && member.avatar || member && member.email ? (
+        {(member && member.avatar) || (member && member.email) ? (
           <ListItem onPress={Actions.newPost} icon>
             <Left>
               <Icon name="add-circle" />
@@ -83,7 +84,7 @@ const PostListing = ({ error, loading, posts, reFetch, member }) => {
                   onPress={() => onPress(item)}
                   style={{ flex: 1 }}
                 >
-                  {/*                   <Image
+                  <Image
                     source={{ uri: item.image }}
                     style={{
                       height: 200,
@@ -91,7 +92,7 @@ const PostListing = ({ error, loading, posts, reFetch, member }) => {
                       flex: 1,
                       borderRadius: 5
                     }}
-                  /> */}
+                  />
                 </TouchableOpacity>
               </CardItem>
               <CardItem cardBody>

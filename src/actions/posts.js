@@ -7,9 +7,6 @@ import { Firebase, FirebaseRef } from "../lib/firebase";
  */
 export function addPost(formData) {
   const { postTitle, postBody, image } = formData;
-  console.log('formData' + JSON.stringify(formData))
-  console.log('formData' + this.state)
-
   return dispatch =>
     new Promise(async (resolve, reject) => {
       // Validation checks
