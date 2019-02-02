@@ -49,7 +49,7 @@ export function getPosts() {
 
   return dispatch =>
     new Promise(resolve =>
-      FirebaseRef.child("posts")
+      FirebaseRef.child("posts").orderByChild("date")
         .limitToFirst(100)
         .on("value", snapshot => {
           //const posts = snapshot.val() || [];

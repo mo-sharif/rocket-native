@@ -7,7 +7,7 @@ import {
   uploadImage,
   setUploading,
   resetImage
-} from "../actions/PostImg";
+} from "../actions/image";
 
 class AddPost extends Component {
   static propTypes = {

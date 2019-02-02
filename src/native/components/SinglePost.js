@@ -7,12 +7,17 @@ import {
 import ErrorMessages from '../../constants/errors';
 import Error from './Error';
 import Spacer from './Spacer';
+import Loading from './Loading';
+
 
 const PostView = ({
   error,
   posts,
   postId,
+  loading
 }) => {
+  // Loading
+  if (loading) return <Loading/>;
   // Error
   if (error) return <Error content={error} />;
   // Get this Post from all Posts
@@ -45,7 +50,7 @@ const PostView = ({
   return (
     <Container>
       <Content padder>
-        <Image source={{ uri: post.image }} style={{ height: 100, width: 100, flex: 1 }} />
+        <Image source={{ uri: post.image }} style={{ height: 400, flex: 1 }} />
 
         <Spacer size={25} />
         <H3>
@@ -111,6 +116,7 @@ PostView.propTypes = {
   error: PropTypes.string,
   postId: PropTypes.string.isRequired,
   posts: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
 PostView.defaultProps = {

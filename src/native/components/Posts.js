@@ -84,7 +84,7 @@ const PostListing = ({ error, loading, posts, reFetch, member }) => {
                   onPress={() => onPress(item)}
                   style={{ flex: 1 }}
                 >
-                  <Image
+                {item.image ? <Image
                     source={{ uri: item.image }}
                     style={{
                       height: 200,
@@ -92,7 +92,8 @@ const PostListing = ({ error, loading, posts, reFetch, member }) => {
                       flex: 1,
                       borderRadius: 5
                     }}
-                  />
+                  />: null}
+                  
                 </TouchableOpacity>
               </CardItem>
               <CardItem cardBody>

@@ -18,6 +18,7 @@ import Messages from "./Messages";
 import { translate } from "../../i18n";
 import Header from "./Header";
 import Spacer from "./Spacer";
+import PhoneNumberVerify from '../components/PhoneNumberVerify/PhoneNumberVerify'
 
 class Login extends React.Component {
   static propTypes = {
@@ -129,6 +130,9 @@ class Login extends React.Component {
 
                 <Text>{translate("LoginwithFacebook", locale)}</Text>
               </Button>
+              <Spacer size={20} />
+
+              <PhoneNumberVerify/>
             </View>
           </Form>
         </Content>

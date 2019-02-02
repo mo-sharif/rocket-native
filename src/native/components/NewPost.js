@@ -4,6 +4,7 @@ import {
   Container,
   Content,
   Form,
+  Left,
   Item,
   Label,
   Input,
@@ -22,17 +23,13 @@ import Loading from "./Loading";
 import Messages from "./Messages";
 import Header from "./Header";
 import Spacer from "./Spacer";
-import PostImg from "./PostImg/PostImg";
-
 import { connect } from "react-redux";
 import { Firebase, FirebaseRef } from "../../lib/firebase";
 import uuid from "uuid";
 
 import {
   ActivityIndicator,
-  Clipboard,
   Image,
-  Share,
   StatusBar,
   StyleSheet
 } from "react-native";
@@ -57,7 +54,7 @@ class AddPost extends Component {
     this.state = {
       postTitle: "",
       postBody: "",
-      postImg: ""
+      image: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -99,44 +96,37 @@ class AddPost extends Component {
           {error && <Messages message={error} />}
 
           <Form>
-            <Item stackedLabel style={{ height: 120 }}>
-              <Label>Image</Label>
-              <List>
-                {image ? null : (
-                  <View>
-                    <ListItem>
-                      <Button transparent onPress={this._pickImage}>
-                        <Icon active name="image" />
-                        <Text>Pick an image</Text>
-                      </Button>
-                      <Right>
-                        <Icon name="arrow-forward" />
-                      </Right>
-                    </ListItem>
-                    <ListItem>
-                      <Button transparent onPress={this._takePhoto}>
-                        <Icon active name="camera" />
-                        <Text>Take a photo</Text>
-                      </Button>
-                      <Right>
-                        <Icon name="arrow-forward" />
-                      </Right>
-                    </ListItem>
-                  </View>
-                )}
-                <View>
-                  {this._maybeRenderImage()}
-                  {this._maybeRenderUploadingOverlay()}
-                  <Body>
-                    <StatusBar barStyle="default" />
-                  </Body>
-                  {/*           <Image
+            {image ? null : (
+              <View>
+                <ListItem onPress={this._pickImage} stackedLabel>
+                  <Left>
+                    <Text>Pick an image</Text>
+                  </Left>
+                  <Right>
+                    <Icon name="image" />
+                  </Right>
+                </ListItem>
+                <ListItem onPress={this._takePhoto} stackedLabel>
+                  <Left>
+                    <Text>Take a photo</Text>
+                  </Left>
+                  <Right>
+                    <Icon name="camera" />
+                  </Right>
+                </ListItem>
+              </View>
+            )}
+            <View>
+              {this._maybeRenderImage()}
+              {this._maybeRenderUploadingOverlay()}
+              <Body>
+                <StatusBar barStyle="default" />
+              </Body>
+              {/*           <Image
             source={{ uri: "Image URL" }}
             style={{ height: 200, width: null, flex: 1 }}
           /> */}
-                </View>
-              </List>
-            </Item>
+            </View>
             <Item stackedLabel>
               <Label>Title</Label>
               <Input
@@ -151,10 +141,15 @@ class AddPost extends Component {
             </Item>
 
             <Spacer size={20} />
-
-            <Button block onPress={this.handleSubmit}>
-              <Text>Submit</Text>
-            </Button>
+            {this.state.uploading ? (
+              <Button block>
+                <Text>Loading ...</Text>
+              </Button>
+            ) : (
+              <Button block onPress={this.handleSubmit}>
+                <Text>Submit</Text>
+              </Button>
+            )}
           </Form>
         </Content>
       </Container>
@@ -188,11 +183,12 @@ class AddPost extends Component {
     return (
       <View
         style={{
-          width: 250,
+          width: "auto",
           borderRadius: 3,
           elevation: 2
         }}
       >
+        <Spacer size={20} />
         <View
           style={{
             borderTopRightRadius: 3,
@@ -204,31 +200,11 @@ class AddPost extends Component {
             overflow: "hidden"
           }}
         >
-          <Image source={{ uri: image }} style={{ width: 350, height: 350 }} />
+          <Image source={{ uri: image }} style={{ height: 350 }} />
         </View>
-
-        <Text
-          onPress={this._copyToClipboard}
-          onLongPress={this._share}
-          style={{ paddingVertical: 10, paddingHorizontal: 10 }}
-        >
-          {image}
-        </Text>
+        <Spacer size={20} />
       </View>
     );
-  };
-
-  _share = () => {
-    Share.share({
-      message: this.state.image,
-      title: "Check out this photo",
-      url: this.state.image
-    });
-  };
-
-  _copyToClipboard = () => {
-    Clipboard.setString(this.state.image);
-    alert("Copied image URL to clipboard");
   };
 
   _takePhoto = async () => {
@@ -284,8 +260,7 @@ class AddPost extends Component {
       xhr.send(null);
     });
 
-    const ref = Firebase.storage()
-      .ref()
+    const ref = FirebaseRef
       .child(uuid.v4());
     const snapshot = await ref.put(blob);
     const getDownloadURL = await snapshot.ref.getDownloadURL();

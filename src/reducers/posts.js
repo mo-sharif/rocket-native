@@ -23,7 +23,7 @@ export default function postsReducer(state = initialState, action) {
         posts = action.data.map(item => ({
           postTitle: item.postTitle,
           postBody: item.postBody,
-          postImg: item.postImg,
+          image: item.image,
           id: item.id
         }));
       }
@@ -81,7 +81,7 @@ export default function postsReducer(state = initialState, action) {
           author: item.author,
           ingredients: item.ingredients,
           method: item.method,
-          postImg: item.postImg,
+          image: item.image,
         }));
       }
 

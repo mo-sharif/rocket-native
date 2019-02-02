@@ -15,6 +15,7 @@ class PostListing extends Component {
     match: PropTypes.shape({
       params: PropTypes.shape({})
     }),
+    isLoading: PropTypes.bool.isRequired,
     fetchPosts: PropTypes.func.isRequired,
     showError: PropTypes.func.isRequired,
     member: PropTypes.shape({
@@ -27,7 +28,9 @@ class PostListing extends Component {
     match: null
   };
 
-  componentDidMount = () => this.fetchPosts();
+  componentDidMount = () => {
+    this.fetchPosts();
+  };
 
   /**
    * Fetch Data from API, saving to Redux
@@ -43,16 +46,16 @@ class PostListing extends Component {
   };
 
   render = () => {
-    const { Layout, posts, match, member } = this.props;
+    const { Layout, posts, match, member, isLoading } = this.props;
     const id =
       match && match.params && match.params.id ? match.params.id : null;
-       
+
     return (
       <Layout
         member={member}
         postId={id}
         error={posts.error}
-        loading={posts.loading}
+        loading={isLoading}
         posts={posts.posts}
         reFetch={() => this.fetchPosts()}
       />
@@ -62,6 +65,7 @@ class PostListing extends Component {
 
 const mapStateToProps = state => ({
   posts: state.posts || {},
+  isLoading: state.status.loading || false,
   member: state.member || {}
 });
 
