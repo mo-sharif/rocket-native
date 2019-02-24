@@ -260,8 +260,9 @@ class AddPost extends Component {
       xhr.send(null);
     });
 
-    const ref = FirebaseRef
-      .child(uuid.v4());
+    const ref = Firebase.storage()
+    .ref()
+    .child(uuid.v4());
     const snapshot = await ref.put(blob);
     const getDownloadURL = await snapshot.ref.getDownloadURL();
 
