@@ -20,3 +20,4 @@ build/bundle.js
 src/constants/api.js
 src/constants/firebase.js
 src/constants/facebook.js
+build/

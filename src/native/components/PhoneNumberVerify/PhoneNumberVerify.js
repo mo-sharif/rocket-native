@@ -13,7 +13,7 @@ export default class PhoneAuthTest extends Component {
       user: null,
       message: '',
       codeInput: '',
-      phoneNumber: '+44',
+      phoneNumber: '',
       confirmResult: null,
     };
   }
