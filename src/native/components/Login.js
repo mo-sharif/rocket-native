@@ -91,7 +91,7 @@ class Login extends React.Component {
               content="Please use your email and password to login."
             />
             {success ? <Messages type="success" message={success} /> : null}
-            {error ? <Messages message={error} /> : null}
+            {error ? <Messages message={"error"} /> : null}
           </View>
 
           <Form>

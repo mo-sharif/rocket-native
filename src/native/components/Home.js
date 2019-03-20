@@ -27,10 +27,10 @@ const Home = ({ member }) => (
       <List>
         <View>
           <Content padder>
-            <Header
-              title="UI Starter Kit"
-              content="Our kit provides with all tools you need to get started on your next mobile idea"
-            />
+            {/* <Header
+              title="WElcom"
+              content="Mixing React native paired with Firebase backend is awesome"
+            /> */}
           </Content>
           {(member && member.avatar) || (member && member.email) ? (
             <View>
