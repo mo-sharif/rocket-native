@@ -38,7 +38,7 @@ class PostListing extends Component {
   fetchPosts = () => {
     const { fetchPosts, showError } = this.props;
     return fetchPosts()
-      .then(() => console.log("Success"))
+      .then(() => console.log("Posts are fetched"))
       .catch(err => {
         console.log(`Error: ${err}`);
         return showError(err);

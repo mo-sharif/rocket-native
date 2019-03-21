@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Content,
   Text,
@@ -9,28 +9,28 @@ import {
   List,
   Icon,
   Container,
-  Thumbnail
-} from "native-base";
-import PropTypes from "prop-types";
+  Thumbnail,
+} from 'native-base';
+import PropTypes from 'prop-types';
 
-import Spacer from "./Spacer";
-import { Actions } from "react-native-router-flux";
-import Header from "./Header";
+import Spacer from './Spacer';
+import { Actions } from 'react-native-router-flux';
+import Header from './Header';
 
-import { Image, View } from "react-native";
+import { Image, View } from 'react-native';
 const img_url =
-  "https://raw.githubusercontent.com/Mosh-Media/rocket-native/master/src/images/app-rocket.png";
+  'https://raw.githubusercontent.com/Mosh-Media/rocket-native/master/src/images/app-rocket.png';
 
-const Home = ({ member }) => (
+const Home = ({ member, logout }) => (
   <Container>
     <Content>
       <List>
         <View>
           <Content padder>
-            {/* <Header
-              title="WElcom"
-              content="Mixing React native paired with Firebase backend is awesome"
-            /> */}
+            <Header
+              title="Welcome!"
+              content="Rocket Native is a boilerplate for IOS and Android Apps. Even better, powered by Firebase cloud."
+            />
           </Content>
           {(member && member.avatar) || (member && member.email) ? (
             <View>
@@ -38,7 +38,7 @@ const Home = ({ member }) => (
                 large
                 style={{
                   flex: 2,
-                  alignSelf: "center"
+                  alignSelf: 'center',
                 }}
                 source={{ uri: member.avatar || img_url }}
               />
@@ -55,7 +55,15 @@ const Home = ({ member }) => (
                   <Text>New Post</Text>
                 </Left>
                 <Right>
-                  <Icon name="add" />
+                  <Icon name="add-circle" />
+                </Right>
+              </ListItem>
+              <ListItem onPress={logout}>
+                <Left>
+                  <Text>Sign out</Text>
+                </Left>
+                <Right>
+                  <Icon name="power" />
                 </Right>
               </ListItem>
             </View>
@@ -68,7 +76,7 @@ const Home = ({ member }) => (
                   height: 250,
                   width: null,
                   flex: 2,
-                  borderRadius: 5
+                  borderRadius: 5,
                 }}
               />
               <ListItem onPress={Actions.signUp} selected>
@@ -96,11 +104,12 @@ const Home = ({ member }) => (
 );
 
 Home.propTypes = {
-  member: PropTypes.shape({})
+  member: PropTypes.shape({}),
+  logout: PropTypes.func.isRequired
 };
 
 Home.defaultProps = {
-  member: {}
+  member: {},
 };
 
 export default Home;
