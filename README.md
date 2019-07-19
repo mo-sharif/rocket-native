@@ -1,3 +1,5 @@
+# No Longer maintained 🤷
+
 <img src="/docs/banner.jpg" alt="React Native Starter Kit" width="400" />
 
 # React (Web + Native) Starter Kit
