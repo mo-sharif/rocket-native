@@ -10,7 +10,7 @@ import { Root, StyleProvider } from 'native-base';
 import getTheme from '../../native-base-theme/components';
 import theme from '../../native-base-theme/variables/commonColor';
 import Routes from './routes/index';
-import Loading from './components/Loading';
+import Loading from './components/UI/Loading';
 
 // Hide StatusBar on Android as it overlaps tabs
 if (Platform.OS === 'android') StatusBar.setHidden(true);
@@ -72,9 +72,9 @@ export default class App extends React.Component {
 
   async componentWillMount() {
     await Font.loadAsync({
-      Roboto: require('../../node_modules/native-base/Fonts/Roboto.ttf'),
-      Roboto_medium: require('../../node_modules/native-base/Fonts/Roboto_medium.ttf'),
-      Ionicons: require('../../node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Ionicons.ttf'),
+      Roboto: require('native-base/Fonts/Roboto.ttf'),
+      Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+      Ionicons: require('@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Ionicons.ttf'),
     });
 
     this.setState({ loading: false });
