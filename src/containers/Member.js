@@ -2,28 +2,49 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { logout, getMemberData } from '../actions/member';
-
 class Member extends Component {
   static propTypes = {
     Layout: PropTypes.func.isRequired,
     memberLogout: PropTypes.func.isRequired,
-    fetchData: PropTypes.func.isRequired,
-    member: PropTypes.shape({
-      loading: PropTypes.bool.isRequired,
-      error: PropTypes.string,
-    }).isRequired,
+    fetchMember: PropTypes.func.isRequired,
+    member: PropTypes.shape({}).isRequired,
   }
 
-  componentDidMount = () => {
-    const { fetchData } = this.props;
-    fetchData();
+  state = {
+    error: null,
+    loading: false,
+  }
+
+  componentDidMount = () => this.fetchData();
+
+  fetchData = (data) => {
+    const { fetchMember } = this.props;
+
+    this.setState({ loading: true });
+
+    return fetchMember(data)
+      .then(() => this.setState({
+        loading: false,
+        error: null,
+      })).catch(err => this.setState({
+        loading: false,
+        error: err,
+      }));
   }
 
   render = () => {
     const { Layout, member, memberLogout } = this.props;
+    const { loading, error } = this.state;
 
-    return <Layout member={member} logout={memberLogout} />;
+    return (
+      <Layout
+        error={error}
+        loading={loading}
+        member={member}
+        logout={memberLogout}
+        reFetch={() => this.fetchData()}
+      />
+    );
   }
 }
 
@@ -31,9 +52,9 @@ const mapStateToProps = state => ({
   member: state.member || {},
 });
 
-const mapDispatchToProps = {
-  memberLogout: logout,
-  fetchData: getMemberData,
-};
+const mapDispatchToProps = dispatch => ({
+  memberLogout: dispatch.member.logout,
+  fetchMember: dispatch.member.getMemberData,
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Member);
