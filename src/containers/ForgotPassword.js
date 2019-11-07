@@ -2,40 +2,49 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { resetPassword } from '../actions/member';
-
 class ForgotPassword extends Component {
   static propTypes = {
     Layout: PropTypes.func.isRequired,
     member: PropTypes.shape({}).isRequired,
     onFormSubmit: PropTypes.func.isRequired,
-    isLoading: PropTypes.bool.isRequired,
   }
 
   state = {
-    errorMessage: null,
+    error: null,
+    success: null,
+    loading: false,
   }
 
   onFormSubmit = (data) => {
     const { onFormSubmit } = this.props;
+
+    this.setState({ loading: true });
+
     return onFormSubmit(data)
-      .catch((err) => { this.setState({ errorMessage: err }); throw err; });
+      .then(() => this.setState({
+        loading: false,
+        success: 'Success - Reset link emailed',
+        error: null,
+      })).catch((err) => {
+        this.setState({
+          loading: false,
+          success: null,
+          error: err,
+        });
+        throw err; // To prevent transition back
+      });
   }
 
   render = () => {
-    const {
-      member,
-      Layout,
-      isLoading,
-    } = this.props;
-
-    const { errorMessage } = this.state;
+    const { member, Layout } = this.props;
+    const { error, loading, success } = this.state;
 
     return (
       <Layout
+        error={error}
         member={member}
-        loading={isLoading}
-        error={errorMessage}
+        loading={loading}
+        success={success}
         onFormSubmit={this.onFormSubmit}
       />
     );
@@ -44,11 +53,10 @@ class ForgotPassword extends Component {
 
 const mapStateToProps = state => ({
   member: state.member || {},
-  isLoading: state.status.loading || false,
 });
 
-const mapDispatchToProps = {
-  onFormSubmit: resetPassword,
-};
+const mapDispatchToProps = dispatch => ({
+  onFormSubmit: dispatch.member.resetPassword,
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(ForgotPassword);
