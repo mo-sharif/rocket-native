@@ -1,6 +1,6 @@
 {
   "expo": {
-    "sdkVersion": "32.0.0",
+    "sdkVersion": "35.0.0",
     "platforms": [
       "ios",
       "android"
@@ -24,17 +24,17 @@
       "**/*"
     ],
     "facebookScheme": "fb1247526985394498",
-    "facebookAppId": "1247526985394498", 
-    "facebookDisplayName": "RocketNative", 
+    "facebookAppId": "1247526985394498",
+    "facebookDisplayName": "RocketNative",
     "ios": {
       "bundleIdentifier": "com.moshmedia.rocketnative",
       "infoPlist": {
         "NSFaceIDUsageDescription": "This app will use Face ID or Touch ID to authorize."
       },
       "supportsTablet": true
-		},
-		"android": {
-			"package": "com.moshmedia.rocketnative"
-		}
+    },
+    "android": {
+      "package": "com.moshmedia.rocketnative"
+    }
   }
 }

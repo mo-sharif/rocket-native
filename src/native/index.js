@@ -1,6 +1,6 @@
 import React from 'react';
-import { StatusBar, Platform } from 'react-native';
-import { Font } from 'expo';
+import { StatusBar, Platform, InteractionManager } from 'react-native';
+import * as Font from 'expo-font';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { Router, Stack } from 'react-native-router-flux';
@@ -14,6 +14,53 @@ import Loading from './components/Loading';
 
 // Hide StatusBar on Android as it overlaps tabs
 if (Platform.OS === 'android') StatusBar.setHidden(true);
+/**
+ * Work around for recurring `Setting a timer for long time` warning.
+ * (Issue is related to "Firebase" package)
+ * see: https://github.com/firebase/firebase-js-sdk/issues/97
+ */
+if (Platform.OS === 'android') {
+  const _setTimeout = global.setTimeout;
+  const _clearTimeout = global.clearTimeout;
+  const MAX_TIMER_DURATION_MS = 60 * 1000;
+
+  const timerFix = {};
+  const runTask = (id, fn, ttl, args) => {
+    const waitingTime = ttl - Date.now();
+    if (waitingTime <= 1) {
+      InteractionManager.runAfterInteractions(() => {
+        if (!timerFix[id]) {
+          return;
+        }
+        delete timerFix[id];
+        fn(...args);
+      });
+      return;
+    }
+
+    const afterTime = Math.min(waitingTime, MAX_TIMER_DURATION_MS);
+    timerFix[id] = _setTimeout(() => runTask(id, fn, ttl, args), afterTime);
+  };
+
+  global.setTimeout = (fn, time, ...args) => {
+    if (MAX_TIMER_DURATION_MS < time) {
+      const ttl = Date.now() + time;
+      const id = `_lt_${Object.keys(timerFix).length}`;
+      runTask(id, fn, ttl, args);
+      return id;
+    }
+    return _setTimeout(fn, time, ...args);
+  };
+
+  global.clearTimeout = (id) => {
+    if (typeof id === 'string' && id.startWith('_lt_')) {
+      _clearTimeout(timerFix[id]);
+      delete timerFix[id];
+      return;
+    }
+    _clearTimeout(id);
+  };
+}
 
 export default class App extends React.Component {
   static propTypes = {
@@ -25,9 +72,9 @@ export default class App extends React.Component {
 
   async componentWillMount() {
     await Font.loadAsync({
-      Roboto: require('native-base/Fonts/Roboto.ttf'),
-      Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
-      Ionicons: require('@expo/vector-icons/fonts/Ionicons.ttf'),
+      Roboto: require('../../node_modules/native-base/Fonts/Roboto.ttf'),
+      Roboto_medium: require('../../node_modules/native-base/Fonts/Roboto_medium.ttf'),
+      Ionicons: require('../../node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Ionicons.ttf'),
     });
 
     this.setState({ loading: false });
