@@ -1,36 +1,32 @@
-/* global window */
-import { createStore, applyMiddleware, compose } from 'redux';
-import { persistStore, persistCombineReducers } from 'redux-persist';
-import storage from 'redux-persist/es/storage'; // default: localStorage if web, AsyncStorage if react-native
-import thunk from 'redux-thunk';
-import reducers from '../reducers';
+/* global */
+import { init } from '@rematch/core';
+import createPersistPlugin, { getPersistor } from '@rematch/persist';
+import createLoadingPlugin from '@rematch/loading';
+import storage from 'redux-persist/es/storage';
+import * as models from '../models';
 
-// Redux Persist config
-const config = {
-  key: 'root',
+// Create plugins
+const persistPlugin = createPersistPlugin({
+  version: 2,
   storage,
-  blacklist: ['status'],
-};
-
-const reducer = persistCombineReducers(config, reducers);
-
-const middleware = [thunk];
+  blacklist: [],
+});
+const loadingPlugin = createLoadingPlugin({});
 
 const configureStore = () => {
-  const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const store = init({
+    models,
+    redux: {
+      middlewares: [],
+    },
+    plugins: [persistPlugin, loadingPlugin],
+  });
 
-  const store = createStore(
-    reducer,
-    composeEnhancer(applyMiddleware(...middleware)),
-  );
+  const persistor = getPersistor();
+  const { dispatch } = store;
 
-  const persistor = persistStore(
-    store,
-    null,
-    () => { store.getState(); },
-  );
-
-  return { persistor, store };
+  return { persistor, store, dispatch };
 };
+
 
 export default configureStore;
