@@ -6,27 +6,24 @@ import { Actions } from "react-native-router-flux";
 import DefaultProps from "../constants/navigation";
 import AppConfig from "../../constants/config";
 
-import PostsContainer from "../../containers/Posts";
-import PostsComponent from "../components/Posts";
-import PostViewComponent from "../components/SinglePost";
+import RecipesContainer from '../../containers/Recipes';
+import RecipeListingComponent from '../components/Recipe/Listing';
+import RecipeSingleComponent from '../components/Recipe/Single';
 
-import UsersContainer from "../../containers/Users";
-import UsersComponent from "../components/Users";
+import SignUpContainer from '../../containers/SignUp';
+import SignUpComponent from '../components/User/SignUp';
 
-import SignUpContainer from "../../containers/SignUp";
-import SignUpComponent from "../components/SignUp";
+import LoginContainer from '../../containers/Login';
+import LoginComponent from '../components/User/Login';
 
-import NewPostContainer from "../../containers/NewPost";
-import NewPostComponent from "../components/NewPost";
+import ForgotPasswordContainer from '../../containers/ForgotPassword';
+import ForgotPasswordComponent from '../components/User/ForgotPassword';
 
-import LoginContainer from "../../containers/Login";
-import LoginComponent from "../components/Login";
+import UpdateProfileContainer from '../../containers/UpdateProfile';
+import UpdateProfileComponent from '../components/User/UpdateProfile';
 
-import ForgotPasswordContainer from "../../containers/ForgotPassword";
-import ForgotPasswordComponent from "../components/ForgotPassword";
-
-import LocaleContainer from "../../containers/Locale";
-import LocaleComponent from "../components/Locale";
+import MemberContainer from '../../containers/Member';
+import ProfileComponent from '../components/User/Profile';
 
 import UpdateProfileContainer from "../../containers/UpdateProfile";
 import UpdateProfileComponent from "../components/UpdateProfile";
@@ -43,7 +40,25 @@ const Index = (
         <Stack
           key="homeStack"
           title={AppConfig.appName.toUpperCase()}
-          icon={() => <Icon name="home" {...DefaultProps.icons} />}
+          icon={() => <Icon name="planet" {...DefaultProps.icons} />}
+          {...DefaultProps.navbarProps}
+        >
+          <Scene key="home" component={AboutComponent} />
+        </Stack>
+
+        <Stack
+          key="recipes"
+          title="RECIPES"
+          icon={() => <Icon name="book" {...DefaultProps.icons} />}
+          {...DefaultProps.navbarProps}
+        >
+          <Scene key="recipes" component={RecipesContainer} Layout={RecipeListingComponent} />
+        </Stack>
+
+        <Stack
+          key="profile"
+          title="PROFILE"
+          icon={() => <Icon name="contact" {...DefaultProps.icons} />}
           {...DefaultProps.navbarProps}
         >
           <Scene
@@ -125,14 +140,6 @@ const Index = (
 
           <Scene
             back
-            key="locale"
-            title="CHANGE LANGUAGE"
-            {...DefaultProps.navbarProps}
-            component={LocaleContainer}
-            Layout={LocaleComponent}
-          />
-          <Scene
-            back
             key="updateProfile"
             title="UPDATE PROFILE"
             {...DefaultProps.navbarProps}
@@ -149,8 +156,8 @@ const Index = (
       key="post"
       title="POST"
       {...DefaultProps.navbarProps}
-      component={PostsContainer}
-      Layout={PostViewComponent}
+      component={RecipesContainer}
+      Layout={RecipeSingleComponent}
     />
   </Stack>
 );
