@@ -2,29 +2,29 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 // Templates
-import TemplateNothing from '../components/TemplateNothing';
-import TemplateSidebar from '../components/TemplateSidebar';
+import TemplateNothing from '../components/Templates/Nothing';
+import TemplateSidebar from '../components/Templates/Sidebar';
 
 // Routes
 import Home from '../components/Home';
 
-import PostsContainer from '../../containers/Posts';
-import PostsComponent from '../components/Posts';
-import PostViewComponent from '../components/Post';
+import RecipesContainer from '../../containers/Recipes';
+import RecipeListingComponent from '../components/Recipe/Listing';
+import RecipeSingleComponent from '../components/Recipe/Single';
 
 import SignUpContainer from '../../containers/SignUp';
-import SignUpComponent from '../components/SignUp';
+import SignUpComponent from '../components/User/SignUp';
 
 import LoginContainer from '../../containers/Login';
-import LoginComponent from '../components/Login';
+import LoginComponent from '../components/User/Login';
 
 import ForgotPasswordContainer from '../../containers/ForgotPassword';
-import ForgotPasswordComponent from '../components/ForgotPassword';
+import ForgotPasswordComponent from '../components/User/ForgotPassword';
 
 import UpdateProfileContainer from '../../containers/UpdateProfile';
-import UpdateProfileComponent from '../components/UpdateProfile';
+import UpdateProfileComponent from '../components/User/UpdateProfile';
 
-import Error from '../components/Error';
+import Error from '../components/UI/Error';
 
 const Index = () => (
   <Switch>
@@ -72,22 +72,22 @@ const Index = () => (
     <Route
       path="/posts"
       render={props => (
-        <TemplateSidebar>
-          <PostsContainer {...props} Layout={PostsComponent} />
+        <TemplateSidebar pageTitle="Recipes">
+          <RecipesContainer {...props} Layout={RecipeListingComponent} />
         </TemplateSidebar>
       )}
     />
     <Route
       path="/post/:id"
       render={props => (
-        <TemplateSidebar>
-          <PostsContainer {...props} Layout={PostViewComponent} />
+        <TemplateSidebar pageTitle="Recipe View">
+          <RecipesContainer {...props} Layout={RecipeSingleComponent} />
         </TemplateSidebar>
       )}
     />
     <Route
       render={props => (
-        <TemplateSidebar pageTitle="404 - Page note found">
+        <TemplateSidebar pageTitle="404 - Page not found">
           <Error {...props} title="404" content="Sorry, the route you requested does not exist" />
         </TemplateSidebar>
       )}
