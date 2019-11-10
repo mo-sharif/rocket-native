@@ -132,7 +132,7 @@ class Login extends React.Component {
               </Button>
               <Spacer size={20} />
 
-              <PhoneNumberVerify/>
+              {/* <PhoneNumberVerify/> */}
             </View>
           </Form>
         </Content>
