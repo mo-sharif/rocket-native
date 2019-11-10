@@ -53,7 +53,7 @@ class UsersListing extends Component {
 }
 
 const mapStateToProps = state => ({
-  users: state.users || {},
+  users: state.users || []
 });
 
 const mapDispatchToProps = {
