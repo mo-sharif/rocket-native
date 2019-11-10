@@ -157,7 +157,6 @@ export default class PhoneAuthTest extends Component {
               style={{ width: 100, height: 100, marginBottom: 25 }}
             />
             <Text style={{ fontSize: 25 }}>Signed In!</Text>
-            <Text>{JSON.stringify(user)}</Text>
             <Button title="Sign Out" color="red" onPress={this.signOut} />
           </View>
         )}
