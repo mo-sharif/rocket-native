@@ -51,7 +51,6 @@ export function getPosts() {
     new Promise(resolve =>
       FirebaseRef.child('posts')
         .orderByKey()
-        .endAt(oldestKeyReference)
         .limitToLast(6)
         .on('value', snapshot => {
           // changing to reverse chronological order (latest first)
