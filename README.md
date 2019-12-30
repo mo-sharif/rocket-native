@@ -1,7 +1,7 @@
 <img src="/docs/banner.jpg" alt="React Native Starter Kit" width="400" />
 
 # React (Web + Native) Starter Kit
-
+No Longer maintained --> Free to grab ⚡ 🤷
 <!-- <a href="https://react-native-starter-app-ab8f3.firebaseapp.com/"><img src="/docs/web-demo.jpg" alt="Web Demo" height="50" /></a> -->
 <a href="https://expo.io/@irottweiler/rocket-native"><img src="/docs/expo-demo.jpg" alt="React Native Expo Demo" height="50" /></a>
 
